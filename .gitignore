@@ -1,5 +1,8 @@
 # Editors
 .idea/
+!.idea/advent-of-code.iml
+!.idea/deno.xml
+!.idea/prettier.xml
 
 # Logs
 logs
