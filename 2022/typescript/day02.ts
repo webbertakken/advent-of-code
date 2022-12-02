@@ -67,7 +67,7 @@ for (const round of rounds) {
   const [opponent, player] = round.split(" ");
   score += rockPaperScissors(shapeMap[player], shapeMap[opponent]);
 }
-console.log(score);
+console.log('Strategy 1 score:', score);
 
 // Part 2
 let score2 = 0;
@@ -77,4 +77,4 @@ for (const round of rounds) {
   const player = shapeForOutcomeMap[opponent][outcomeMap[input2]];
   score2 += rockPaperScissors(player, opponent);
 }
-console.log(score2);
+console.log('Strategy 2 score:', score2);
