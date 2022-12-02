@@ -29,7 +29,7 @@ const outcomeMap: { [key: string]: Outcome } = {
   Z: Outcome.win,
 };
 
-const shapeForOutcomeMap: { [opponentShape: Shape]: { [key: Outcome]: Shape } } = {
+const shapeForOutcomeMap = {
   [Shape.rock]: {
     [Outcome.win]: Shape.paper,
     [Outcome.draw]: Shape.rock,
