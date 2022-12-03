@@ -39,7 +39,7 @@ impl Shape {
 
 pub fn main() {
     let input = read_input("day02");
-    let rounds = input.split("\n");
+    let rounds = input.split('\n');
 
     // Part 1
     let score = rounds.clone().map(|round| {
@@ -48,7 +48,6 @@ pub fn main() {
         player.score_against(&opponent)
     }).sum::<i32>();
     println!("Strategy 1 score: {:?}", score);
-
 
     // Part 2
     let score = rounds.map(|round| {
