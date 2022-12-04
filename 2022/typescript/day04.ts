@@ -3,13 +3,7 @@ import Library from "./lib.ts";
 const getGroups = (): number[][] =>
   Library.getInput("day04")
     .split("\n")
-    .map((pair) =>
-      pair
-        .split(",")
-        .map((range) => range.split("-"))
-        .flat()
-        .map((number) => Number(number))
-    );
+    .map((a) => a.split(/[,-]/).map((number) => Number(number)));
 
 // Part 1
 export const getNumberOfCompleteOverlaps = (): number => {
