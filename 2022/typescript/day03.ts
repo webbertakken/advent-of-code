@@ -1,6 +1,6 @@
-import { getInput } from "./lib.ts";
+import Library from "./lib.ts";
 
-const input = getInput("day03");
+const input = Library.getInput("day03");
 const rucksacks = input.split("\n");
 
 // Part 1
