@@ -9,8 +9,8 @@ const getGroups = (): number[][] =>
 export const getNumberOfCompleteOverlaps = (): number => {
   return getGroups().reduce((acc, [a, b, c, d]) => {
     const contains = a >= c && b <= d;
-    const completeOverlap = c >= a && d <= b;
-    return contains || completeOverlap ? acc + 1 : acc;
+    const overlaps = a <= c && b >= d;
+    return contains || overlaps ? acc + 1 : acc;
   }, 0);
 };
 console.log("Number of complete overlaps:", getNumberOfCompleteOverlaps());
