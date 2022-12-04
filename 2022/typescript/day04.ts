@@ -23,12 +23,6 @@ console.log("Number of complete overlaps:", getNumberOfCompleteOverlaps());
 
 // Part 2
 export const getNumberOfPartialOverlaps = (): number => {
-  return getGroups().reduce((acc, [a, b, c, d]) => {
-    const leftOverlap = a >= c && a <= d;
-    const rightOverlap = b >= c && b <= d;
-    const completeOverlap = a <= c && b >= d;
-    const contains = a >= c && b <= d;
-    return leftOverlap || rightOverlap || completeOverlap || contains ? acc + 1 : acc;
-  }, 0);
+  return getGroups().reduce((acc, [a, b, c, d]) => (a > d || b < c ? acc : acc + 1), 0);
 };
 console.log("Number of partial overlaps:", getNumberOfPartialOverlaps());
