@@ -7,4 +7,8 @@ export default class Library {
   static getInput(dayName: string): string {
     return Deno.readTextFileSync(`${INPUT_PATH}/${dayName}.txt`);
   }
+
+  static getTestInput(dayName: string): string {
+    return Deno.readTextFileSync(`${INPUT_PATH}/${dayName}.txt`);
+  }
 }
