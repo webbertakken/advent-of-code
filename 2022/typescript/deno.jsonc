@@ -1,5 +1,5 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "deno.ns"]
+    "lib": ["dom", "deno.ns"],
   }
 }
