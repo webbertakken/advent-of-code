@@ -1,7 +1,7 @@
-import Library from "./lib.ts";
+import Library from "../lib.ts";
 import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
 import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
-import { getNinthTailVisitCount, getTailVisitedCount } from "./day09.ts";
+import { getNinthTailVisitCount, getTailVisitedCount } from "../day09.ts";
 
 Deno.test("Day 9", async (context) => {
   await context.step("getTailVisited", async (test) => {

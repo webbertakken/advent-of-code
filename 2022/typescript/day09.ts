@@ -20,7 +20,7 @@ const getInput = () =>
     .flat();
 
 const countVisited = (moves: Direction[], tails = 1) => {
-  let visited = new Set<string>().add("0,0");
+  const visited = new Set<string>().add("0,0");
 
   const snake = [];
   for (let i = 0; i <= tails; i++) snake.push({ x: 0, y: 0 });
@@ -32,10 +32,8 @@ const countVisited = (moves: Direction[], tails = 1) => {
     if (move === Direction.Left) snake[0].x--;
     for (let i = 1; i <= tails; i++) {
       if (Math.abs(snake[i].x - snake[i - 1].x) > 1 || Math.abs(snake[i].y - snake[i - 1].y) > 1) {
-        const x = Math.sign(snake[i - 1].x - snake[i].x);
-        const y = Math.sign(snake[i - 1].y - snake[i].y);
-        snake[i].x += x;
-        snake[i].y += y;
+        snake[i].x += Math.sign(snake[i - 1].x - snake[i].x);
+        snake[i].y += Math.sign(snake[i - 1].y - snake[i].y);
         if (i === tails) visited.add(`${snake[i].x},${snake[i].y}`);
       }
     }

@@ -25,6 +25,19 @@ Run the solution for a specific day
 ```bash
 deno run -A day01.ts
 ```
+
+Run the tests
+
+```bash
+deno test -A
+```
+
+Benchmarks
+
+```bash
+deno bench -A
+```
+
 </details>
 
 ## Rust

@@ -1,5 +1,5 @@
-import Library from "./lib.ts";
-import { getNumberOfCompleteOverlaps, getNumberOfPartialOverlaps } from "./day04.ts";
+import Library from "../lib.ts";
+import { getNumberOfCompleteOverlaps, getNumberOfPartialOverlaps } from "../day04.ts";
 import { assertEquals, assert } from "https://deno.land/std@0.153.0/testing/asserts.ts";
 import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
 
