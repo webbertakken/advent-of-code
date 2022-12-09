@@ -62,19 +62,25 @@ const rockPaperScissors = (player: Shape, opponent: Shape): number => {
 const rounds = input.split("\n");
 
 // Part 1
-let score = 0;
-for (const round of rounds) {
-  const [opponent, player] = round.split(" ");
-  score += rockPaperScissors(shapeMap[player], shapeMap[opponent]);
-}
-console.log("Strategy 1 score:", score);
+export const strategy1Score = (): number => {
+  let score = 0;
+  for (const round of rounds) {
+    const [opponent, player] = round.split(" ");
+    score += rockPaperScissors(shapeMap[player], shapeMap[opponent]);
+  }
+  return score;
+};
+console.log("Strategy 1 score:", strategy1Score());
 
 // Part 2
-let score2 = 0;
-for (const round of rounds) {
-  const [input1, input2] = round.split(" ");
-  const opponent = shapeMap[input1];
-  const player = shapeForOutcomeMap[opponent][outcomeMap[input2]];
-  score2 += rockPaperScissors(player, opponent);
-}
-console.log("Strategy 2 score:", score2);
+export const strategy2Score = (): number => {
+  let score = 0;
+  for (const round of rounds) {
+    const [input1, input2] = round.split(" ");
+    const opponent = shapeMap[input1];
+    const player = shapeForOutcomeMap[opponent][outcomeMap[input2]];
+    score += rockPaperScissors(player, opponent);
+  }
+  return score;
+};
+console.log("Strategy 2 score:", strategy2Score());

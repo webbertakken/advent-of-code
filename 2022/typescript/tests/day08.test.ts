@@ -1,7 +1,7 @@
-import Library from "./lib.ts";
+import Library from "../lib.ts";
 import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
 import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
-import { getHighestViewScore, getVisibleTrees } from "./day08.ts";
+import { getHighestViewScore, getVisibleTrees } from "../day08.ts";
 
 Deno.test("Day 8", async (context) => {
   await context.step("getVisibleTrees", async (test) => {
