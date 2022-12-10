@@ -1,11 +1,10 @@
 import Library from "./lib.ts";
 
-const input = Library.getInput("day03");
-const rucksacks = input.split("\n");
+const getRucksacks = () => Library.getInput("day03").split("\n");
 
 // Part 1
 export const prioritySum = () => {
-  return rucksacks
+  return getRucksacks()
     .map((rucksack) => {
       const lhs = rucksack.slice(0, rucksack.length / 2);
       const rhs = rucksack.slice(rucksack.length / 2);
@@ -27,7 +26,7 @@ export const badgesSum = () => {
 
   let index = -1;
   let regex;
-  for (const rucksack of rucksacks) {
+  for (const rucksack of getRucksacks()) {
     index = (index + 1) % 3;
     if (index == 0) regex = rucksack;
     regex = Array.from(new Set(rucksack.match(new RegExp(`[${regex}]`, "g")))).join("");

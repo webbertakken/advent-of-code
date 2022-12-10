@@ -3,16 +3,9 @@ import { getNumberOfCompleteOverlaps, getNumberOfPartialOverlaps } from "../day0
 import { assertEquals, assert } from "https://deno.land/std@0.153.0/testing/asserts.ts";
 import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
 
-const testData = `2-4,6-8
-2-3,4-5
-5-7,7-9
-2-8,3-7
-6-6,4-6
-2-6,4-8`;
-
 Deno.test("Day 4", async (test) => {
   await test.step("getNumberOfCompleteOverlaps returns the right number for test data", async () => {
-    const stub = sinon.stub(Library, "getInput").returns(testData);
+    const stub = sinon.stub(Library, "getInput").returns(Library.getTestInput("day04-example"));
     assertEquals(getNumberOfCompleteOverlaps(), 2);
     stub.restore();
   });
@@ -23,7 +16,7 @@ Deno.test("Day 4", async (test) => {
   });
 
   await test.step("getNumberOfCompleteOverlaps returns the right number for test data", async () => {
-    const stub = sinon.stub(Library, "getInput").returns(testData);
+    const stub = sinon.stub(Library, "getInput").returns(Library.getTestInput("day04-example"));
     assertEquals(getNumberOfPartialOverlaps(), 4);
     stub.restore();
   });
