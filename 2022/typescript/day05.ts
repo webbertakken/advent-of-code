@@ -26,7 +26,7 @@ export const topOfStacksUsingMover9000 = () => {
     .map((stack) => stack[0])
     .join("");
 };
-console.log("Part 1:", topOfStacksUsingMover9000());
+console.log("Top of stack using Mover9000:", topOfStacksUsingMover9000());
 
 // Part 2
 export const topOfStacksUsingMover9001 = () => {
