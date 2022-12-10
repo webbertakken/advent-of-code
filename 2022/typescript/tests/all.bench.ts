@@ -8,6 +8,7 @@ import { getFourNonConsecutiveChars, getFourteenNonConsecutiveChars } from "../d
 import { getRecursiveSumOfDirsBelow100k, getSizeOfFolderToRemove } from "../day07.ts";
 import { getHighestViewScore, getVisibleTrees } from "../day08.ts";
 import { getNinthTailVisitCount, getTailVisitedCount } from "../day09.ts";
+import { decodedLettersAsImage, executionSequence, sumOfSixSignalStrengths } from "../day10.ts";
 
 Lib.bench({ name: "day01 - part 1", fn: highestTotal });
 Lib.bench({ name: "day01 - part 2", fn: sumOfTopThree });
@@ -35,3 +36,6 @@ Lib.bench({ name: "day08 - part 2", fn: getHighestViewScore });
 
 Lib.bench({ name: "day09 - part 1", fn: getTailVisitedCount });
 Lib.bench({ name: "day09 - part 2", fn: getNinthTailVisitCount });
+
+Lib.bench({ name: "day10 - part 1", fn: sumOfSixSignalStrengths });
+Lib.bench({ name: "day10 - part 2", fn: decodedLettersAsImage });
