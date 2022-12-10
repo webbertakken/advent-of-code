@@ -2,8 +2,9 @@ import Library from "./lib.ts";
 
 const getNonConsecutiveChars = (amount: number) => {
   const input = Library.getInput("day06");
-  for (let i = amount - 1; i < input.length; i++) {
-    if (new Set(input.slice(i - amount, i)).size === amount) return i;
+  for (let i = amount; i < input.length; i++) {
+    const chars = input.slice(i - amount, i).split("");
+    if (!chars.some((c) => chars.filter((c2) => c2 === c).length >= 2)) return i;
   }
 
   throw new Error("No four non-consecutive characters found");
