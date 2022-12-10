@@ -1,10 +1,9 @@
 import Library from "./lib.ts";
 
-const input = Library.getInput("day01");
+const getInput = () => Library.getInput("day01").split("\n\n");
 
 const getTotals = () => {
-  const groups = input.split("\n\n");
-  return groups.map((group) => group.split("\n").reduce((acc, number) => acc + Number(number), 0));
+  return getInput().map((group) => group.split("\n").reduce((acc, number) => acc + Number(number), 0));
 };
 
 // Part 1
