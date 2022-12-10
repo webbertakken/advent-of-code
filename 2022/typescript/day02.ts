@@ -1,6 +1,6 @@
 import Library from "./lib.ts";
 
-const input = Library.getInput("day02");
+const getRounds = () => Library.getInput("day02").split("\n");
 
 enum Shape {
   rock = 1,
@@ -59,12 +59,10 @@ const rockPaperScissors = (player: Shape, opponent: Shape): number => {
   return score;
 };
 
-const rounds = input.split("\n");
-
 // Part 1
 export const strategy1Score = (): number => {
   let score = 0;
-  for (const round of rounds) {
+  for (const round of getRounds()) {
     const [opponent, player] = round.split(" ");
     score += rockPaperScissors(shapeMap[player], shapeMap[opponent]);
   }
@@ -75,7 +73,7 @@ console.log("Strategy 1 score:", strategy1Score());
 // Part 2
 export const strategy2Score = (): number => {
   let score = 0;
-  for (const round of rounds) {
+  for (const round of getRounds()) {
     const [input1, input2] = round.split(" ");
     const opponent = shapeMap[input1];
     const player = shapeForOutcomeMap[opponent][outcomeMap[input2]];
