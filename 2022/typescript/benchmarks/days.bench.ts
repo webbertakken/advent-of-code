@@ -9,6 +9,7 @@ import { getRecursiveSumOfDirsBelow100k, getSizeOfFolderToRemove } from "../day0
 import { getHighestViewScore, getVisibleTrees } from "../day08.ts";
 import { getNinthTailVisitCount, getTailVisitedCount } from "../day09.ts";
 import { decodedLettersAsImage, sumOfSixSignalStrengths } from "../day10.ts";
+import { monkeyBusinessLevelAfter20, monkeyBusinessLevelAfter10k } from "../day11.ts";
 
 Lib.bench({ name: "day01 - part 1", fn: highestTotal });
 Lib.bench({ name: "day01 - part 2", fn: sumOfTopThree });
@@ -39,3 +40,6 @@ Lib.bench({ name: "day09 - part 2", fn: getNinthTailVisitCount });
 
 Lib.bench({ name: "day10 - part 1", fn: sumOfSixSignalStrengths });
 Lib.bench({ name: "day10 - part 2", fn: decodedLettersAsImage });
+
+Lib.bench({ name: "day11 - part 1", fn: monkeyBusinessLevelAfter20 });
+Lib.bench({ name: "day11 - part 2", fn: monkeyBusinessLevelAfter10k });
