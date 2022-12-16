@@ -10,7 +10,7 @@ import { getHighestViewScore, getVisibleTrees } from "../day08.ts";
 import { getNinthTailVisitCount, getTailVisitedCount } from "../day09.ts";
 import { decodedLettersAsImage, sumOfSixSignalStrengths } from "../day10.ts";
 import { monkeyBusinessLevelAfter20, monkeyBusinessLevelAfter10k } from "../day11.ts";
-import { fewestStepsRequired } from "../day12.ts";
+import { fewestStepsRequired, fewestStepsRequiredFromAnyA } from "../day12.ts";
 import { decoderKeyForDistressSignal, sumOfIndicesOfCorrectPairs } from "../day13.ts";
 
 Lib.bench({ name: "day01 - part 1", fn: highestTotal });
@@ -47,7 +47,7 @@ Lib.bench({ name: "day11 - part 1", fn: monkeyBusinessLevelAfter20 });
 Lib.bench({ name: "day11 - part 2", fn: monkeyBusinessLevelAfter10k });
 
 Lib.bench({ name: "day12 - part 1", fn: fewestStepsRequired });
+Lib.bench({ name: "day12 - part 2", fn: fewestStepsRequiredFromAnyA });
 
 Lib.bench({ name: "day13 - part 1", fn: sumOfIndicesOfCorrectPairs });
 Lib.bench({ name: "day13 - part 2", fn: decoderKeyForDistressSignal });
-
