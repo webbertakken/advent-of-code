@@ -4,7 +4,7 @@ Me participating in Advent of Code.
 
 To practice, I will try to solve the problems in different languages.
 
-## TypeScript (Deno)
+## TypeScript (Bun)
 
 <details>
 
