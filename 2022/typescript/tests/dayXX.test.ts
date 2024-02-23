@@ -1,30 +1,29 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, test, vi, expect } from "vitest";
 import { part1, part2 } from "../dayXX.ts";
 
-Deno.test("Day XX", async (context) => {
-  await context.step("part1", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("dayXX-example"));
-      assertEquals(part1(), 0);
-      getInput.restore();
+describe("Day XX", async (context) => {
+  describe("part1", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("dayXX-example"));
+      expect(part1()).toEqual(0);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      // assertEquals(part1(), 0);
+    test("works with real input", () => {
+      // expect(part1())  .toEqual(0)
     });
   });
 
-  await context.step("part2", async (test) => {
-    await test.step(`works with example input`, async () => {
-      // const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("dayXX-example"));
-      // assertEquals(part2(), 0);
-      // getInput.restore();
+  describe("part2", () => {
+    test("works with example input", () => {
+      // const getInput =  vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("dayXX-example"));
+      // expect(part2())  .toEqual(0)
+      // getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      // assertEquals(part2(), 0);
+    test("works with real input", () => {
+      // expect(part2())  .toEqual(0)
     });
   });
 });

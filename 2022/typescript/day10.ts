@@ -60,6 +60,6 @@ export const decodedLettersAsImage = () => {
     i++;
   }
 
-  return image;
+  return "\n" + image.join("\n");
 };
 console.log("Decoded letters as image:", decodedLettersAsImage());

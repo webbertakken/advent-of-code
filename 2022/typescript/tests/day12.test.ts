@@ -1,29 +1,28 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { fewestStepsRequired, fewestStepsRequiredFromAnyA /* part2 */ } from "../day12.ts";
 
-Deno.test("Day 12", async (context) => {
-  await context.step("part1", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day12-example"));
-      assertEquals(fewestStepsRequired(), 31);
-      getInput.restore();
+describe("Day 12", async (context) => {
+  describe("part1", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day12-example"));
+      expect(fewestStepsRequired()).toEqual(31);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(fewestStepsRequired(), 483);
+    test("works with real input", () => {
+      expect(fewestStepsRequired()).toEqual(483);
     });
   });
 
-  await context.step("fewestStepsRequiredFromAnyA", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day12-example"));
-      assertEquals(fewestStepsRequiredFromAnyA(), 30);
-      getInput.restore();
+  describe("fewestStepsRequiredFromAnyA", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day12-example"));
+      expect(fewestStepsRequiredFromAnyA()).toEqual(30);
+      getInput.mockRestore();
     });
-    await test.step(`works with real input`, async () => {
-      assertEquals(fewestStepsRequiredFromAnyA(), 482);
+    test("works with real input", () => {
+      expect(fewestStepsRequiredFromAnyA()).toEqual(482);
     });
   });
 });

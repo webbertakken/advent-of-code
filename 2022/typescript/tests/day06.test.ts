@@ -1,10 +1,9 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { getFourNonConsecutiveChars, getFourteenNonConsecutiveChars } from "../day06.ts";
 
-Deno.test("Day 6", async (context) => {
-  await context.step("getFourNonConsecutiveChars", async (test) => {
+describe("Day 6", async (context) => {
+  describe("getFourNonConsecutiveChars", () => {
     const examples = [
       { input: "bvwbjplbgvbhsrlpgdmjqwftvncz", expected: 5 },
       { input: "nppdvjthqldpwncqszvftbrmjlhg", expected: 6 },
@@ -13,19 +12,19 @@ Deno.test("Day 6", async (context) => {
     ];
 
     for (const { input, expected } of examples) {
-      await test.step(`works with example ${input}`, async () => {
-        const getInput = sinon.stub(Library, "getInput").returns(input);
-        assertEquals(getFourNonConsecutiveChars(), expected);
-        getInput.restore();
+      test("works with example ${input}", () => {
+        const getInput = vi.spyOn(Library, "getInput").mockReturnValue(input);
+        expect(getFourNonConsecutiveChars()).toEqual(expected);
+        getInput.mockRestore();
       });
     }
 
-    await test.step(`works with real data`, async () => {
-      assertEquals(getFourNonConsecutiveChars(), 1238);
+    test("works with real data", () => {
+      expect(getFourNonConsecutiveChars()).toEqual(1238);
     });
   });
 
-  await context.step("getFourteenNonConsecutiveChars", async (test) => {
+  describe("getFourteenNonConsecutiveChars", () => {
     const examples = [
       { input: "mjqjpqmgbljsphdztnvjfqwrcgsmlb", expected: 19 },
       { input: "bvwbjplbgvbhsrlpgdmjqwftvncz", expected: 23 },
@@ -35,15 +34,15 @@ Deno.test("Day 6", async (context) => {
     ];
 
     for (const { input, expected } of examples) {
-      await test.step(`works with example ${input}`, async () => {
-        const getInput = sinon.stub(Library, "getInput").returns(input);
-        assertEquals(getFourteenNonConsecutiveChars(), expected);
-        getInput.restore();
+      test("works with example ${input}", () => {
+        const getInput = vi.spyOn(Library, "getInput").mockReturnValue(input);
+        expect(getFourteenNonConsecutiveChars()).toEqual(expected);
+        getInput.mockRestore();
       });
     }
 
-    await test.step(`works with real data`, async () => {
-      assertEquals(getFourteenNonConsecutiveChars(), 3037);
+    test("works with real data", () => {
+      expect(getFourteenNonConsecutiveChars()).toEqual(3037);
     });
   });
 });

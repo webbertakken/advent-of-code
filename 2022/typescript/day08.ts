@@ -57,7 +57,7 @@ export const getHighestViewScore = () => {
             }
             return los;
           })
-          .reduce((multiplier, los) => multiplier * los, 1)
+          .reduce((multiplier, los) => multiplier * los, 1),
       );
     }
   }

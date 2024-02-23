@@ -1,13 +1,12 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { executionSequence, decodedLettersAsImage, sumOfSixSignalStrengths } from "../day10.ts";
 
-Deno.test("Day 10", async (context) => {
-  await context.step("iterator", async (test) => {
-    await test.step(`results in the right number`, async () => {
+describe("Day 10", async (context) => {
+  describe("iterator", () => {
+    test("results in the right number", () => {
       // Arrange
-      const getInput = sinon.stub(Library, "getInput").returns(`noop\naddx 3\naddx -5`);
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(`noop\naddx 3\naddx -5`);
       const iterator = executionSequence();
 
       // Act
@@ -19,46 +18,52 @@ Deno.test("Day 10", async (context) => {
       }
 
       // Assert
-      assertEquals(x, -1);
-      getInput.restore();
+      expect(x).toEqual(-1);
+      getInput.mockRestore();
     });
   });
 
-  await context.step("sumOfSixSignalStrenths", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day10-example"));
-      assertEquals(sumOfSixSignalStrengths(), 13140);
-      getInput.restore();
+  describe("sumOfSixSignalStrenths", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day10-example"));
+      expect(sumOfSixSignalStrengths()).toEqual(13140);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(sumOfSixSignalStrengths(), 14220);
+    test("works with real input", () => {
+      expect(sumOfSixSignalStrengths()).toEqual(14220);
     });
   });
 
-  await context.step("decodedLettersAsImage", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day10-example"));
-      assertEquals(decodedLettersAsImage(), [
-        "##..##..##..##..##..##..##..##..##..##..",
-        "###...###...###...###...###...###...###.",
-        "####....####....####....####....####....",
-        "#####.....#####.....#####.....#####.....",
-        "######......######......######......####",
-        "#######.......#######.......#######.....",
-      ]);
-      getInput.restore();
+  describe("decodedLettersAsImage", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day10-example"));
+      expect(decodedLettersAsImage()).toEqual(
+        [
+          "",
+          "##..##..##..##..##..##..##..##..##..##..",
+          "###...###...###...###...###...###...###.",
+          "####....####....####....####....####....",
+          "#####.....#####.....#####.....#####.....",
+          "######......######......######......####",
+          "#######.......#######.......#######.....",
+        ].join("\n"),
+      );
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(decodedLettersAsImage(), [
-        "####.###...##..###..#....####.####.#..#.",
-        "...#.#..#.#..#.#..#.#....#.......#.#..#.",
-        "..#..#..#.#..#.#..#.#....###....#..#..#.",
-        ".#...###..####.###..#....#.....#...#..#.",
-        "#....#.#..#..#.#.#..#....#....#....#..#.",
-        "####.#..#.#..#.#..#.####.#....####..##..",
-      ]);
+    test("works with real input", () => {
+      expect(decodedLettersAsImage()).toEqual(
+        [
+          "",
+          "####.###...##..###..#....####.####.#..#.",
+          "...#.#..#.#..#.#..#.#....#.......#.#..#.",
+          "..#..#..#.#..#.#..#.#....###....#..#..#.",
+          ".#...###..####.###..#....#.....#...#..#.",
+          "#....#.#..#..#.#.#..#....#....#....#..#.",
+          "####.#..#.#..#.#..#.####.#....####..##..",
+        ].join("\n"),
+      );
     });
   });
 });

@@ -1,30 +1,29 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { getHighestViewScore, getVisibleTrees } from "../day08.ts";
 
-Deno.test("Day 8", async (context) => {
-  await context.step("getVisibleTrees", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day08-example"));
-      assertEquals(getVisibleTrees(), 21);
-      getInput.restore();
+describe("Day 8", async (context) => {
+  describe("getVisibleTrees", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day08-example"));
+      expect(getVisibleTrees()).toEqual(21);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(getVisibleTrees(), 1647);
+    test("works with real input", () => {
+      expect(getVisibleTrees()).toEqual(1647);
     });
   });
 
-  await context.step("getHighestViewScore", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day08-example"));
-      assertEquals(getHighestViewScore(), 8);
-      getInput.restore();
+  describe("getHighestViewScore", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day08-example"));
+      expect(getHighestViewScore()).toEqual(8);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(getHighestViewScore(), 392080);
+    test("works with real input", () => {
+      expect(getHighestViewScore()).toEqual(392080);
     });
   });
 });

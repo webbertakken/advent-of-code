@@ -10,7 +10,9 @@ To practice, I will try to solve the problems in different languages.
 
 ### Prerequisites
 
-- [Deno](https://deno.land/manual@v1.28.3/getting_started/installation)
+- [Bun](https://bun.sh/)
+or
+- [Node](https://nodejs.org/)
 
 ### Run
 
@@ -23,19 +25,23 @@ cd 2022/typescript
 Run the solution for a specific day
 
 ```bash
-deno run -A day01.ts
+bun run day01.ts
 ```
 
 Run the tests
 
 ```bash
-deno test -A
+bun test # note that this runs bun native stuff underneath, as opposed to "bun run test"
+# or
+yarn test
 ```
 
 Benchmarks
 
 ```bash
-deno bench -A
+bun run bench # bun bench fails with "error: Failed to due to error: spawn() is not yet implemented on Windows"
+# or
+yarn bench
 ```
 
 </details>
