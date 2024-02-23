@@ -1,28 +1,29 @@
 import Library from "../lib.ts";
+import { describe, expect, test, vi } from "vitest";
 import { getNumberOfCompleteOverlaps, getNumberOfPartialOverlaps } from "../day04.ts";
-import { assertEquals, assert } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
 
-Deno.test("Day 4", async (test) => {
-  await test.step("getNumberOfCompleteOverlaps returns the right number for test data", async () => {
-    const stub = sinon.stub(Library, "getInput").returns(Library.getTestInput("day04-example"));
-    assertEquals(getNumberOfCompleteOverlaps(), 2);
-    stub.restore();
+describe("Day 4", () => {
+  describe("getNumberOfCompleteOverlaps", () => {
+    test("returns the right number for test data", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day04-example"));
+      expect(getNumberOfCompleteOverlaps()).toEqual(2);
+      getInput.mockRestore();
+    });
+
+    test("returns the right number for real data", () => {
+      expect(getNumberOfCompleteOverlaps()).toEqual(556);
+    });
   });
 
-  await test.step("getNumberOfCompleteOverlaps returns the right number for real data", async () => {
-    assert(getNumberOfCompleteOverlaps());
-    assertEquals(getNumberOfCompleteOverlaps(), 556);
-  });
+  describe("getNumberOfPartialOverlaps", () => {
+    test("returns the right number for test data", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day04-example"));
+      expect(getNumberOfPartialOverlaps()).toEqual(4);
+      getInput.mockRestore();
+    });
 
-  await test.step("getNumberOfCompleteOverlaps returns the right number for test data", async () => {
-    const stub = sinon.stub(Library, "getInput").returns(Library.getTestInput("day04-example"));
-    assertEquals(getNumberOfPartialOverlaps(), 4);
-    stub.restore();
-  });
-
-  await test.step("getNumberOfPartialOverlaps returns the right number for real data", async () => {
-    assert(getNumberOfPartialOverlaps());
-    assertEquals(getNumberOfPartialOverlaps(), 876);
+    test("returns the right number for real data", () => {
+      expect(getNumberOfPartialOverlaps()).toEqual(876);
+    });
   });
 });

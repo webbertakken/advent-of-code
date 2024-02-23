@@ -1,30 +1,29 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { highestTotal, sumOfTopThree } from "../day01.ts";
 
-Deno.test("Day 1", async (context) => {
-  await context.step("highestTotal", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day01-example"));
-      assertEquals(highestTotal(), 24000);
-      getInput.restore();
+describe("Day 1", async (context) => {
+  describe("highestTotal", async () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day01-example"));
+      expect(highestTotal()).toEqual(24000);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(highestTotal(), 69206);
+    test("works with real input", () => {
+      expect(highestTotal()).toEqual(69206);
     });
   });
 
-  await context.step("sumOfTopThree", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day01-example"));
-      assertEquals(sumOfTopThree(), 45000);
-      getInput.restore();
+  describe("sumOfTopThree", async () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day01-example"));
+      expect(sumOfTopThree()).toEqual(45000);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(sumOfTopThree(), 197400);
+    test("works with real input", () => {
+      expect(sumOfTopThree()).toEqual(197400);
     });
   });
 });

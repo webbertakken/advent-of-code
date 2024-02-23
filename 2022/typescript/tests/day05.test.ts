@@ -1,30 +1,29 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { topOfStacksUsingMover9000, topOfStacksUsingMover9001 } from "../day05.ts";
 
-Deno.test("Day 5", async (context) => {
-  await context.step("topOfStacksUsingMover9000", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day05-example"));
-      assertEquals(topOfStacksUsingMover9000(), "CMZ");
-      getInput.restore();
+describe("Day 5", async (context) => {
+  describe("topOfStacksUsingMover9000", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day05-example"));
+      expect(topOfStacksUsingMover9000()).toEqual("CMZ");
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(topOfStacksUsingMover9000(), "RFFFWBPNS");
+    test("works with real input", () => {
+      expect(topOfStacksUsingMover9000()).toEqual("RFFFWBPNS");
     });
   });
 
-  await context.step("topOfStacksUsingMover9001", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day05-example"));
-      assertEquals(topOfStacksUsingMover9001(), "MCD");
-      getInput.restore();
+  describe("topOfStacksUsingMover9001", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day05-example"));
+      expect(topOfStacksUsingMover9001()).toEqual("MCD");
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(topOfStacksUsingMover9001(), "CQQBBJFCS");
+    test("works with real input", () => {
+      expect(topOfStacksUsingMover9001()).toEqual("CQQBBJFCS");
     });
   });
 });

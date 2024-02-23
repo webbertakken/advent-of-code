@@ -7,7 +7,7 @@ export const part1 = () => {
   getInput();
 
   return 0;
-}
+};
 // console.log("Part 1:", part1());
 
 // Part 2

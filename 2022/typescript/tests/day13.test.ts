@@ -1,30 +1,29 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { sumOfIndicesOfCorrectPairs, decoderKeyForDistressSignal } from "../day13.ts";
 
-Deno.test("Day 13", async (context) => {
-  await context.step("sumOfIndicesOfCorrectPairs", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day13-example"));
-      assertEquals(sumOfIndicesOfCorrectPairs(), 13);
-      getInput.restore();
+describe("Day 13", async (context) => {
+  describe("sumOfIndicesOfCorrectPairs", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day13-example"));
+      expect(sumOfIndicesOfCorrectPairs()).toEqual(13);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(sumOfIndicesOfCorrectPairs(), 5905);
+    test("works with real input", () => {
+      expect(sumOfIndicesOfCorrectPairs()).toEqual(5905);
     });
   });
 
-  await context.step("decoderKeyForDistressSignal", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day13-example"));
-      assertEquals(decoderKeyForDistressSignal(), 140);
-      getInput.restore();
+  describe("decoderKeyForDistressSignal", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day13-example"));
+      expect(decoderKeyForDistressSignal()).toEqual(140);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(decoderKeyForDistressSignal(), 21691);
+    test("works with real input", () => {
+      expect(decoderKeyForDistressSignal()).toEqual(21691);
     });
   });
 });

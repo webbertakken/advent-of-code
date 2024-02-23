@@ -1,5 +1,5 @@
 import Library from "./lib.ts";
-import { isEqual } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
+import { isEqual } from "lodash";
 
 const getInput = () =>
   Library.getInput("day13")

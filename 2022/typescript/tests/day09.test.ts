@@ -1,30 +1,29 @@
 import Library from "../lib.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import sinon from "https://cdn.skypack.dev/sinon@11.1.2?dts";
+import { describe, expect, test, vi } from "vitest";
 import { getNinthTailVisitCount, getTailVisitedCount } from "../day09.ts";
 
-Deno.test("Day 9", async (context) => {
-  await context.step("getTailVisited", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day09-example"));
-      assertEquals(getTailVisitedCount(), 13);
-      getInput.restore();
+describe("Day 9", async (context) => {
+  describe("getTailVisited", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day09-example"));
+      expect(getTailVisitedCount()).toEqual(13);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(getTailVisitedCount(), 6098);
+    test("works with real input", () => {
+      expect(getTailVisitedCount()).toEqual(6098);
     });
   });
 
-  await context.step("getNinthTailVisitCount", async (test) => {
-    await test.step(`works with example input`, async () => {
-      const getInput = sinon.stub(Library, "getInput").returns(Library.getTestInput("day09-example"));
-      assertEquals(getNinthTailVisitCount(), 1);
-      getInput.restore();
+  describe("getNinthTailVisitCount", () => {
+    test("works with example input", () => {
+      const getInput = vi.spyOn(Library, "getInput").mockReturnValue(Library.getTestInput("day09-example"));
+      expect(getNinthTailVisitCount()).toEqual(1);
+      getInput.mockRestore();
     });
 
-    await test.step(`works with real input`, async () => {
-      assertEquals(getNinthTailVisitCount(), 2597);
+    test("works with real input", () => {
+      expect(getNinthTailVisitCount()).toEqual(2597);
     });
   });
 });

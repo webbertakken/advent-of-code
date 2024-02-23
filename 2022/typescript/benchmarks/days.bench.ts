@@ -1,4 +1,4 @@
-import Lib from "../lib.ts";
+import { bench } from "vitest";
 import { highestTotal, sumOfTopThree } from "../day01.ts";
 import { strategy1Score, strategy2Score } from "../day02.ts";
 import { badgesSum, prioritySum } from "../day03.ts";
@@ -13,41 +13,41 @@ import { monkeyBusinessLevelAfter20, monkeyBusinessLevelAfter10k } from "../day1
 import { fewestStepsRequired, fewestStepsRequiredFromAnyA } from "../day12.ts";
 import { decoderKeyForDistressSignal, sumOfIndicesOfCorrectPairs } from "../day13.ts";
 
-Lib.bench({ name: "day01 - part 1", fn: highestTotal });
-Lib.bench({ name: "day01 - part 2", fn: sumOfTopThree });
+bench("day01 - part 1", highestTotal);
+bench("day01 - part 2", sumOfTopThree);
 
-Lib.bench({ name: "day02 - part 1", fn: strategy1Score });
-Lib.bench({ name: "day02 - part 2", fn: strategy2Score });
+bench("day02 - part 1", strategy1Score);
+bench("day02 - part 2", strategy2Score);
 
-Lib.bench({ name: "day03 - part 1", fn: prioritySum });
-Lib.bench({ name: "day03 - part 2", fn: badgesSum });
+bench("day03 - part 1", prioritySum);
+bench("day03 - part 2", badgesSum);
 
-Lib.bench({ name: "day04 - part 1", fn: getNumberOfCompleteOverlaps });
-Lib.bench({ name: "day04 - part 2", fn: getNumberOfPartialOverlaps });
+bench("day04 - part 1", getNumberOfCompleteOverlaps);
+bench("day04 - part 2", getNumberOfPartialOverlaps);
 
-Lib.bench({ name: "day05 - part 1", fn: topOfStacksUsingMover9000 });
-Lib.bench({ name: "day05 - part 2", fn: topOfStacksUsingMover9001 });
+bench("day05 - part 1", topOfStacksUsingMover9000);
+bench("day05 - part 2", topOfStacksUsingMover9001);
 
-Lib.bench({ name: "day06 - part 1", fn: getFourNonConsecutiveChars });
-Lib.bench({ name: "day06 - part 2", fn: getFourteenNonConsecutiveChars });
+bench("day06 - part 1", getFourNonConsecutiveChars);
+bench("day06 - part 2", getFourteenNonConsecutiveChars);
 
-Lib.bench({ name: "day07 - part 1", fn: getRecursiveSumOfDirsBelow100k });
-Lib.bench({ name: "day07 - part 2", fn: getSizeOfFolderToRemove });
+bench("day07 - part 1", getRecursiveSumOfDirsBelow100k);
+bench("day07 - part 2", getSizeOfFolderToRemove);
 
-Lib.bench({ name: "day08 - part 1", fn: getVisibleTrees });
-Lib.bench({ name: "day08 - part 2", fn: getHighestViewScore });
+bench("day08 - part 1", getVisibleTrees);
+bench("day08 - part 2", getHighestViewScore);
 
-Lib.bench({ name: "day09 - part 1", fn: getTailVisitedCount });
-Lib.bench({ name: "day09 - part 2", fn: getNinthTailVisitCount });
+bench("day09 - part 1", getTailVisitedCount);
+bench("day09 - part 2", getNinthTailVisitCount);
 
-Lib.bench({ name: "day10 - part 1", fn: sumOfSixSignalStrengths });
-Lib.bench({ name: "day10 - part 2", fn: decodedLettersAsImage });
+bench("day10 - part 1", sumOfSixSignalStrengths);
+bench("day10 - part 2", decodedLettersAsImage);
 
-Lib.bench({ name: "day11 - part 1", fn: monkeyBusinessLevelAfter20 });
-Lib.bench({ name: "day11 - part 2", fn: monkeyBusinessLevelAfter10k });
+bench("day11 - part 1", monkeyBusinessLevelAfter20);
+bench("day11 - part 2", monkeyBusinessLevelAfter10k);
 
-Lib.bench({ name: "day12 - part 1", fn: fewestStepsRequired });
-Lib.bench({ name: "day12 - part 2", fn: fewestStepsRequiredFromAnyA });
+bench("day12 - part 1", fewestStepsRequired);
+bench("day12 - part 2", fewestStepsRequiredFromAnyA);
 
-Lib.bench({ name: "day13 - part 1", fn: sumOfIndicesOfCorrectPairs });
-Lib.bench({ name: "day13 - part 2", fn: decoderKeyForDistressSignal });
+bench("day13 - part 1", sumOfIndicesOfCorrectPairs);
+bench("day13 - part 2", decoderKeyForDistressSignal);

@@ -1,19 +1,22 @@
-import * as path from "https://deno.land/std@0.167.0/path/mod.ts";
-import BenchDefinition = Deno.BenchDefinition;
+import { readFileSync } from "fs";
+import { join } from "path";
 
-const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
-const INPUT_PATH = path.dirname(__dirname) + "/input";
+
+// Works for both Node and Bun
+const dir = __dirname ?? import.meta.dir;
+
+const INPUT_PATH = join(dir, "../", "input");
 
 export default class Library {
   static getInput(dayName: string): string {
-    return Deno.readTextFileSync(`${INPUT_PATH}/${dayName}.txt`);
+    return readFileSync(`${INPUT_PATH}/${dayName}.txt`).toString();
   }
 
   static getTestInput(dayName: string): string {
-    return Deno.readTextFileSync(`${INPUT_PATH}/${dayName}.txt`);
+    return readFileSync(`${INPUT_PATH}/${dayName}.txt`).toString();
   }
 
-  static bench({ name, fn }: { fn: () => any } & Omit<BenchDefinition, "fn">) {
-    Deno.bench({ name, fn: fn as () => void });
+  static bench({ name, fn }: { fn: () => any }) {
+    bench(name, fn as () => void);
   }
 }
