@@ -1,95 +1,35 @@
 # Advent of Code
 
-Me participating in Advent of Code.
+Me participating in [Advent of Code](https://adventofcode.com/2024/about).
 
-To practice, I will try to solve the problems in different languages.
+To practice, I try to solve the problems in different languages; 
+ideally in a way that is idiomatic to the language.
 
-## TypeScript (Bun)
+## Getting started
 
-<details>
+### Clone
 
-### Prerequisites
+Clone the repository and navigate to it's root directory.
 
-- [Bun](https://bun.sh/)
-or
-- [Node](https://nodejs.org/)
+```bash
+git clone https://github.com/webbertakken/advent-of-code.git
+cd advent-of-code
+```
 
-### Run
+### Navigate
 
-Change directory to the TypeScript folder
+Navigate to language and year of your choice.
+
+For example:
 
 ```bash
 cd 2022/typescript
 ```
 
-Run the solution for a specific day
+### Operate
 
-```bash
-bun run day01.ts
-```
+Open the README.md file of the selected folder to see how to run the solutions.
 
-Run the tests
+## License
 
-```bash
-bun test # note that this runs bun native stuff underneath, as opposed to "bun run test"
-# or
-yarn test
-```
-
-Benchmarks
-
-```bash
-bun run bench # bun bench fails with "error: Failed to due to error: spawn() is not yet implemented on Windows"
-# or
-yarn bench
-```
-
-</details>
-
-## Rust
-
-<details>
-
-### Prerequisites
-
-- [Rust](https://www.rust-lang.org/tools/install)
-
-### Run
-
-Change directory to the Rust folder
-
-```bash
-cd 2022/rust
-```
-
-Run the solution for a specific day
-
-```bash
-cargo run --bin day01
-```
-
-</details>
-
-## Go
-
-<details>
-
-### Prerequisites
-
-- [Go](https://golang.org/doc/install)
-
-### Run
-
-Change directory to the Go folder
-
-```bash
-cd 2022/go
-```
-
-Run the solution for a specific day
-
-```bash
-go run . day01
-```
-
-</details>
+This repository is [MIT](./LICENSE) licensed.
