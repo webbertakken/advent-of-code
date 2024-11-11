@@ -1,6 +1,6 @@
-import Library from "./lib.ts";
+import Library from './lib'
 
-const getRounds = () => Library.getInput("day02").split("\n");
+const getRounds = () => Library.getInput('day02').split('\n')
 
 enum Shape {
   rock = 1,
@@ -21,13 +21,13 @@ const shapeMap: { [key: string]: Shape } = {
   X: Shape.rock,
   Y: Shape.paper,
   Z: Shape.scissors,
-};
+}
 
 const outcomeMap: { [key: string]: Outcome } = {
   X: Outcome.loss,
   Y: Outcome.draw,
   Z: Outcome.win,
-};
+}
 
 const shapeForOutcomeMap = {
   [Shape.rock]: {
@@ -45,40 +45,40 @@ const shapeForOutcomeMap = {
     [Outcome.draw]: Shape.scissors,
     [Outcome.loss]: Shape.paper,
   },
-};
+}
 
 const rockPaperScissors = (player: Shape, opponent: Shape): number => {
-  let score = Number(player);
+  let score = Number(player)
 
   if (player === opponent) {
-    score += 3;
+    score += 3
   } else if (player === shapeForOutcomeMap[opponent][Outcome.win]) {
-    score += 6;
+    score += 6
   }
 
-  return score;
-};
+  return score
+}
 
 // Part 1
 export const strategy1Score = (): number => {
-  let score = 0;
+  let score = 0
   for (const round of getRounds()) {
-    const [opponent, player] = round.split(" ");
-    score += rockPaperScissors(shapeMap[player], shapeMap[opponent]);
+    const [opponent, player] = round.split(' ')
+    score += rockPaperScissors(shapeMap[player], shapeMap[opponent])
   }
-  return score;
-};
-console.log("Strategy 1 score:", strategy1Score());
+  return score
+}
+console.log('Strategy 1 score:', strategy1Score())
 
 // Part 2
 export const strategy2Score = (): number => {
-  let score = 0;
+  let score = 0
   for (const round of getRounds()) {
-    const [input1, input2] = round.split(" ");
-    const opponent = shapeMap[input1];
-    const player = shapeForOutcomeMap[opponent][outcomeMap[input2]];
-    score += rockPaperScissors(player, opponent);
+    const [input1, input2] = round.split(' ')
+    const opponent = shapeMap[input1]
+    const player = shapeForOutcomeMap[opponent][outcomeMap[input2]]
+    score += rockPaperScissors(player, opponent)
   }
-  return score;
-};
-console.log("Strategy 2 score:", strategy2Score());
+  return score
+}
+console.log('Strategy 2 score:', strategy2Score())
