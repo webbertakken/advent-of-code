@@ -14,4 +14,8 @@ export default class Library {
   static getExampleInput(dayName: string): string {
     return readFileSync(`${INPUT_PATH}/${dayName}-example.txt`).toString()
   }
+
+  static getExample2Input(dayName: string): string {
+    return readFileSync(`${INPUT_PATH}/${dayName}-example2.txt`).toString()
+  }
 }
