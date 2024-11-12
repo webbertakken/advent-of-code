@@ -18,14 +18,14 @@ describe('Day XX', async () => {
 
   describe('part2', () => {
     test('works with example input', () => {
-      // const getInput =  vi.spyOn(Library, "getInput").mockImplementation(Library.getTestInput)
-      // expect(part2())  .toEqual(0)
+      // const getInput = vi.spyOn(Library, "getInput").mockImplementation(Library.getExampleInput)
+      // expect(part2()).toEqual(0)
       // expect(getInput).toHaveBeenCalledTimes(1)
       // getInput.mockRestore()
     })
 
     test('works with real input', () => {
-      // expect(part2())  .toEqual(0)
+      // expect(part2()).toEqual(0)
     })
   })
 })
