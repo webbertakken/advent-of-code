@@ -31,15 +31,15 @@ export const getTotalSimilarityScore = () => {
   const [left, right] = getLists()
 
   // Count the number of times each number appears in list B
-  const listBNumberCounts = new Map<number, number>()
+  const rightNumberCounts = new Map<number, number>()
   for (const number of right) {
-    listBNumberCounts.set(number, (listBNumberCounts.get(number) ?? 0) + 1)
+    rightNumberCounts.set(number, (rightNumberCounts.get(number) ?? 0) + 1)
   }
 
   // Get the count of each number in list A and multiply it by the number
   let similarityScore = 0
   for (const number of left) {
-    similarityScore += (listBNumberCounts.get(number) ?? 0) * number
+    similarityScore += (rightNumberCounts.get(number) ?? 0) * number
   }
 
   return similarityScore
