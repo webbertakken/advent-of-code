@@ -46,8 +46,8 @@ export function Day01() {
       <h1 className="text-5xl pb-4">Day 1</h1>
       <h2 className="text-2xl">Legend</h2>
       <ul className="list-disc list-inside text-xl p-4">
-        <li className="text-[orange]">Left</li>
-        <li className="text-[lightgreen]">Right</li>
+        <li className="text-[lightgreen]">Left</li>
+        <li className="text-[orange]">Right</li>
       </ul>
       <h2 className="text-2xl">Number distribution from left and right list.</h2>
       <p>A quick view of how the numbers are distributed</p>
@@ -57,25 +57,6 @@ export function Day01() {
           labelComponent={<VictoryTooltip />}
           horizontal
           data={[{ x: 'right', y: [...right] }]}
-          style={{
-            min: { stroke: 'mediumseagreen' },
-            max: { stroke: 'lightgreen' },
-            q1: { fill: 'mediumseagreen' },
-            q3: { fill: 'lightgreen' },
-            median: {
-              stroke: 'white',
-              strokeWidth: 2,
-            },
-            minLabels: { fill: 'mediumseagreen' },
-            maxLabels: { fill: 'lightgreen' },
-          }}
-        />
-
-        <VictoryBoxPlot
-          labels
-          labelComponent={<VictoryTooltip />}
-          horizontal
-          data={[{ x: 'left', y: [...left] }]}
           style={{
             min: { stroke: 'tomato' },
             max: { stroke: 'orange' },
@@ -87,6 +68,25 @@ export function Day01() {
             },
             minLabels: { fill: 'tomato' },
             maxLabels: { fill: 'orange' },
+          }}
+        />
+
+        <VictoryBoxPlot
+          labels
+          labelComponent={<VictoryTooltip />}
+          horizontal
+          data={[{ x: 'left', y: [...left] }]}
+          style={{
+            min: { stroke: 'mediumseagreen' },
+            max: { stroke: 'lightgreen' },
+            q1: { fill: 'mediumseagreen' },
+            q3: { fill: 'lightgreen' },
+            median: {
+              stroke: 'white',
+              strokeWidth: 2,
+            },
+            minLabels: { fill: 'mediumseagreen' },
+            maxLabels: { fill: 'lightgreen' },
           }}
         />
       </VictoryChart>
