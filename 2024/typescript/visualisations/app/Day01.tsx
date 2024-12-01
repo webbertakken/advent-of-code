@@ -1,6 +1,5 @@
 'use client'
 
-// @ts-ignore
 import data from '../../../input/day01.txt'
 
 import { VictoryBar, VictoryBoxPlot, VictoryChart, VictoryScatter, VictoryTheme, VictoryTooltip } from 'victory'
