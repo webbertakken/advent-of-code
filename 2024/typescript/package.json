@@ -4,6 +4,9 @@
     "test": "vitest",
     "bench": "vitest bench"
   },
+  "workspaces": [
+    "visualisations"
+  ],
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@types/bun": "^1.1.13",
