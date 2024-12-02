@@ -1,6 +1,6 @@
 import Library from '../lib'
 import { describe, test, vi, expect } from 'vitest'
-import { analyseNumberOfSafeStrangeReports, analiseSafetyAfterAfterProblemDampener } from '../day02'
+import { analyseNumberOfSafeStrangeReports, analiseSafetyAfterProblemDampener } from '../day02'
 
 describe('Day 02', async () => {
   describe('analyseSafeNumberOfStrangeReports', () => {
@@ -16,16 +16,16 @@ describe('Day 02', async () => {
     })
   })
 
-  describe('analiseSafetyAfterAfterProblemDampener', () => {
+  describe('analiseSafetyAfterProblemDampener', () => {
     test('works with example input', () => {
       const getInput = vi.spyOn(Library, 'getInput').mockImplementation(Library.getExampleInput)
-      expect(analiseSafetyAfterAfterProblemDampener()).toEqual(4)
+      expect(analiseSafetyAfterProblemDampener()).toEqual(4)
       expect(getInput).toHaveBeenCalledTimes(1)
       getInput.mockRestore()
     })
 
     test('works with real input', () => {
-      expect(analiseSafetyAfterAfterProblemDampener()).toEqual(665)
+      expect(analiseSafetyAfterProblemDampener()).toEqual(665)
     })
   })
 })
