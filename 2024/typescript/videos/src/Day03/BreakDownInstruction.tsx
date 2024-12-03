@@ -1,4 +1,4 @@
-import { useCurrentFrame } from 'remotion'
+import { interpolate, useCurrentFrame } from 'remotion'
 import input from '../../../../input/day03.txt'
 
 export function BreakDownInstruction() {
@@ -34,7 +34,9 @@ export function BreakDownInstruction() {
           <div style={{ opacity: Math.max(0, (frame % 120) - 60) / 60 }}>×</div>
           <div>{right}</div>
           <div style={{ opacity: Math.max(0, (frame % 120) - 60) / 60 }}>=</div>
-          <div style={{ opacity: Math.max(0, (frame % 120) - 60) / 60 }}>{left * right}</div>
+          <div style={{ opacity: Math.max(0, (frame % 120) - 60) / 60 }}>
+            {Math.ceil(interpolate(frame % 60, [0, 40, 60], [0, left * right, left * right]))}
+          </div>
         </div>
       </div>
     </>
