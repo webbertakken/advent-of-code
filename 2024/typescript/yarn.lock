@@ -4073,9 +4073,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"day3@workspace:videos/day3":
+"day3@workspace:videos":
   version: 0.0.0-use.local
-  resolution: "day3@workspace:videos/day3"
+  resolution: "day3@workspace:videos"
   dependencies:
     "@remotion/cli": "npm:4.0.234"
     "@remotion/eslint-config": "npm:4.0.234"
@@ -9297,7 +9297,7 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A^5#optional!builtin<compat/typescript>":
   version: 5.7.2
-  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=8c6c40"
+  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=cef18b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver

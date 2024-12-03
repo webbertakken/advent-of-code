@@ -6,8 +6,7 @@
   },
   "workspaces": [
     "visualisations",
-    "videos",
-    "videos/*"
+    "videos"
   ],
   "devDependencies": {
     "@jest/globals": "^29.7.0",

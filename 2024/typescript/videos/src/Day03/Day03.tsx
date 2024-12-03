@@ -1,7 +1,7 @@
 import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion'
 import { z } from 'zod'
 
-import input from '../../../../../input/day03.txt'
+import input from '../../../../input/day03.txt'
 
 export const instructionsSchema = z.object({})
 
