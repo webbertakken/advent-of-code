@@ -11,7 +11,7 @@ export const Instructions: React.FC<z.infer<typeof instructionsSchema>> = ({}) =
 
   const swipeInDuration = Math.round(width / 50)
   const mayStart = frame > swipeInDuration
-  const scrollSpeed = 17
+  const scrollSpeed = 8
 
   return (
     <AbsoluteFill style={{ backgroundColor: '#282b36' }}>

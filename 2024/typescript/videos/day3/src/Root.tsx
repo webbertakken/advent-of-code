@@ -10,8 +10,8 @@ export const RemotionRoot: React.FC = () => {
         // npx remotion render src/index.ts <id> out/video.mp4
         id="Instructions"
         component={Instructions}
-        durationInFrames={9999}
-        fps={30}
+        durationInFrames={6000}
+        fps={60}
         width={1920}
         height={1080}
         // You can override these props for each render:
