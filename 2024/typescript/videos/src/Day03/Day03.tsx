@@ -23,7 +23,7 @@ export const Day03: React.FC<z.infer<typeof instructionsSchema>> = ({}) => {
         <div
           className="pt-60 relative w-full h-1/3 overflow-hidden text-5xl"
           style={{
-            left: Math.max(0, width - frame * 50),
+            left: Math.max(0, width - frame * scrollSpeed * 1.25),
           }}
         >
           <div className="absolute left-0 w-8 h-24 -mt-2 z-20 bg-[rgb(40,43,54)]" />
