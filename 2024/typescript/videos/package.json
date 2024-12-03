@@ -1,7 +1,7 @@
 {
-  "name": "day3",
+  "name": "videos",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Videos for Advent of Code",
   "repository": {},
   "license": "UNLICENSED",
   "private": true,

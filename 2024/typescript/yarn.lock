@@ -4073,26 +4073,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"day3@workspace:videos":
-  version: 0.0.0-use.local
-  resolution: "day3@workspace:videos"
-  dependencies:
-    "@remotion/cli": "npm:4.0.234"
-    "@remotion/eslint-config": "npm:4.0.234"
-    "@remotion/tailwind": "npm:4.0.234"
-    "@remotion/zod-types": "npm:4.0.234"
-    "@types/react": "npm:18.3.1"
-    "@types/web": "npm:0.0.166"
-    eslint: "npm:8.56.0"
-    prettier: "npm:3.3.3"
-    react: "npm:18.3.1"
-    react-dom: "npm:18.3.1"
-    remotion: "npm:4.0.234"
-    typescript: "npm:5.5.4"
-    zod: "npm:3.22.3"
-  languageName: unknown
-  linkType: soft
-
 "debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4, debug@npm:^4.3.5, debug@npm:^4.3.7":
   version: 4.3.7
   resolution: "debug@npm:4.3.7"
@@ -9297,7 +9277,7 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A^5#optional!builtin<compat/typescript>":
   version: 5.7.2
-  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=cef18b"
+  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=8c6c40"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -9802,6 +9782,26 @@ __metadata:
   checksum: 10c0/c753d2777658bf46a071b443a81718d6ced0fef12245046088b0b68aae2c258ca3c383295988caa3b10c0e8dfbd6c996408bfb50a8dfc5e834fa77fcf390d285
   languageName: node
   linkType: hard
+
+"videos@workspace:videos":
+  version: 0.0.0-use.local
+  resolution: "videos@workspace:videos"
+  dependencies:
+    "@remotion/cli": "npm:4.0.234"
+    "@remotion/eslint-config": "npm:4.0.234"
+    "@remotion/tailwind": "npm:4.0.234"
+    "@remotion/zod-types": "npm:4.0.234"
+    "@types/react": "npm:18.3.1"
+    "@types/web": "npm:0.0.166"
+    eslint: "npm:8.56.0"
+    prettier: "npm:3.3.3"
+    react: "npm:18.3.1"
+    react-dom: "npm:18.3.1"
+    remotion: "npm:4.0.234"
+    typescript: "npm:5.5.4"
+    zod: "npm:3.22.3"
+  languageName: unknown
+  linkType: soft
 
 "visualisations@workspace:visualisations":
   version: 0.0.0-use.local
