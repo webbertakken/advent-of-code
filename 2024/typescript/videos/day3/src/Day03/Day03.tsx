@@ -5,7 +5,7 @@ import input from '../../../../../input/day03.txt'
 
 export const instructionsSchema = z.object({})
 
-export const Instructions: React.FC<z.infer<typeof instructionsSchema>> = ({}) => {
+export const Day03: React.FC<z.infer<typeof instructionsSchema>> = ({}) => {
   const frame = useCurrentFrame()
   const { width } = useVideoConfig()
 
