@@ -22,9 +22,7 @@ export const Day03: React.FC<z.infer<typeof instructionsSchema>> = ({}) => {
       <Sequence name="analyse input" from={0}>
         <div
           className="pt-60 relative w-full h-1/3 overflow-hidden text-5xl"
-          style={{
-            left: Math.max(0, width - frame * scrollSpeed * 1.25),
-          }}
+          style={{ left: Math.max(0, width - frame * scrollSpeed * 1.25) }}
         >
           <div className="absolute left-0 w-8 h-24 -mt-2 z-20 bg-[rgb(40,43,54)]" />
           <div className="absolute left-8 w-24 h-24 -mt-2 z-20 bg-gradient-to-r from-[rgba(40,43,54,1)] to-[rgba(40,43,54,0)]" />
@@ -35,7 +33,6 @@ export const Day03: React.FC<z.infer<typeof instructionsSchema>> = ({}) => {
             dangerouslySetInnerHTML={{
               __html: input
                 .replaceAll('<', '&lt;')
-                .replaceAll('>', '&gt;')
                 .replaceAll(/mul\(\d+,\d+\)/g, (match) => `<span class="text-green-500">` + match + `</span>`),
             }}
             className="absolute w-2/3 overflow-x-clip text-nowrap z-10 text-blue-300 border-[rgba(12,12,12,.2)] border-y-8 bg-[#282b36] h-20"
