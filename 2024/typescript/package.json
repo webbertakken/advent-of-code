@@ -5,7 +5,8 @@
     "bench": "vitest bench"
   },
   "workspaces": [
-    "visualisations"
+    "visualisations",
+    "videos/*"
   ],
   "devDependencies": {
     "@jest/globals": "^29.7.0",
