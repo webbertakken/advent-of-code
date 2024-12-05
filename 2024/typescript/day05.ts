@@ -5,7 +5,7 @@ const getInput = () =>
     .split('\n\n')
     .map((input) => input.split('\n').map((line) => line.split(/[|,]/).map(Number)))
 
-const sortByOrderingRules = (orderingRules: number[][]) => {
+const createSortByOrderingRules = (orderingRules: number[][]) => {
   const sortRegistry = new Map<number, number[]>()
   for (const [left, right] of orderingRules) {
     sortRegistry.set(left, [...(sortRegistry.get(left) ?? []), right])
@@ -18,11 +18,11 @@ const getSumOfMiddlePageNumbers =
   (fromCorrectUpdates: boolean = true) =>
   () => {
     const [orderingRules, updates] = getInput()
-    const sortFn = sortByOrderingRules(orderingRules)
+    const sortByOrderingRules = createSortByOrderingRules(orderingRules)
 
     let sum = 0
     for (const original of updates) {
-      const sorted = original.toSorted(sortFn)
+      const sorted = original.toSorted(sortByOrderingRules)
       const isEquallySorted = original.every((value, index) => value === sorted[index])
       if (fromCorrectUpdates === isEquallySorted) sum += sorted[Math.floor(sorted.length / 2)]
     }
