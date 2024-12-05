@@ -5,35 +5,35 @@ const getInput = () =>
     .split('\n\n')
     .map((input) => input.split('\n').map((line) => line.split(/[|,]/).map(Number)))
 
-const sortByOrderingRules =
-  (orderingRules: number[][]) =>
-  (a: number, b: number): number => {
-    for (const [left, right] of orderingRules) {
-      if (left === a && right === b) return -1
-      if (left === b && right === a) return 1
-    }
-    return 0
+const sortByOrderingRules = (orderingRules: number[][]) => {
+  const sortRegistry = new Map<number, number[]>()
+  for (const [left, right] of orderingRules) {
+    sortRegistry.set(left, [...(sortRegistry.get(left) ?? []), right])
   }
+
+  return (a: number, b: number): number => (sortRegistry.has(a) && sortRegistry.get(a)?.includes(b) ? -1 : 1)
+}
 
 const getSumOfMiddlePageNumbers =
   (fromCorrectUpdates: boolean = true) =>
   () => {
     const [orderingRules, updates] = getInput()
+    const sortFn = sortByOrderingRules(orderingRules)
 
-    let sumOfMiddlePageNumbers = 0
+    let sum = 0
     for (const original of updates) {
-      const sorted = original.toSorted(sortByOrderingRules(orderingRules))
-      const isEquallySorted = JSON.stringify(original) === JSON.stringify(sorted)
-      if (fromCorrectUpdates === isEquallySorted) sumOfMiddlePageNumbers += sorted[Math.floor(sorted.length / 2)]
+      const sorted = original.toSorted(sortFn)
+      const isEquallySorted = original.every((value, index) => value === sorted[index])
+      if (fromCorrectUpdates === isEquallySorted) sum += sorted[Math.floor(sorted.length / 2)]
     }
 
-    return sumOfMiddlePageNumbers
+    return sum
   }
 
 // Part 1
 export const getSumOfMiddlePageNumbersFromCorrectUpdates = getSumOfMiddlePageNumbers()
-console.log('Part 1:', getSumOfMiddlePageNumbersFromCorrectUpdates())
+console.log('Sum of middle page numbers from correct updates:', getSumOfMiddlePageNumbersFromCorrectUpdates())
 
 // Part 2
 export const getSumOfMiddlePageNumbersFromIncorrectUpdates = getSumOfMiddlePageNumbers(false)
-console.log('Part 2:', getSumOfMiddlePageNumbersFromIncorrectUpdates())
+console.log('Sum of middle page numbers from incorrect updates:', getSumOfMiddlePageNumbersFromIncorrectUpdates())
