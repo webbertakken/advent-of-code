@@ -1,6 +1,7 @@
 import { benchmark } from '../tests/testLib'
 
 import { part1, part2 } from '../dayXX'
+import { getSumOfMiddlePageNumbersFromCorrectUpdates, getSumOfMiddlePageNumbersFromIncorrectUpdates } from '../day05'
 import { getTotalDistanceBetweenPairs, getTotalSimilarityScore } from '../day01'
 import { analiseSafetyAfterProblemDampener, analyseNumberOfSafeStrangeReports } from '../day02'
 import { getSumOfAllInstructions, getSumOfEnabledInstructions } from '../day03'
@@ -20,3 +21,6 @@ benchmark('day03 - part 2', getSumOfEnabledInstructions)
 
 benchmark('day04 - part 1', getXmasCount)
 benchmark('day04 - part 2', getCrossedMasCount)
+
+benchmark('day05 - part 1', getSumOfMiddlePageNumbersFromCorrectUpdates)
+benchmark('day05 - part 2', getSumOfMiddlePageNumbersFromIncorrectUpdates)
