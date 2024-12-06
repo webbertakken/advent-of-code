@@ -1,11 +1,12 @@
 import { benchmark } from '../tests/testLib'
 
 import { part1, part2 } from '../dayXX'
-import { getSumOfMiddlePageNumbersFromCorrectUpdates, getSumOfMiddlePageNumbersFromIncorrectUpdates } from '../day05'
 import { getTotalDistanceBetweenPairs, getTotalSimilarityScore } from '../day01'
 import { analiseSafetyAfterProblemDampener, analyseNumberOfSafeStrangeReports } from '../day02'
 import { getSumOfAllInstructions, getSumOfEnabledInstructions } from '../day03'
 import { getCrossedMasCount, getXmasCount } from '../day04'
+import { getSumOfMiddlePageNumbersFromCorrectUpdates, getSumOfMiddlePageNumbersFromIncorrectUpdates } from '../day05'
+import { getGuardsDistinctVisitedPositions } from '../day06'
 
 benchmark('dayXX - part 1', part1)
 benchmark('dayXX - part 2', part2)
@@ -24,3 +25,5 @@ benchmark('day04 - part 2', getCrossedMasCount)
 
 benchmark('day05 - part 1', getSumOfMiddlePageNumbersFromCorrectUpdates)
 benchmark('day05 - part 2', getSumOfMiddlePageNumbersFromIncorrectUpdates)
+
+benchmark('day06 - part 1', getGuardsDistinctVisitedPositions)
