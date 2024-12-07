@@ -8,6 +8,7 @@ import { getCrossedMasCount, getXmasCount } from '../day04'
 import { getSumOfMiddlePageNumbersFromCorrectUpdates, getSumOfMiddlePageNumbersFromIncorrectUpdates } from '../day05'
 import { getGuardsDistinctVisitedPositions } from '../day06'
 import { getRevisedTotalCalibrationResult, getTotalCalibrationResult } from '../day07'
+import { wasmGetRevisedTotalCalibrationResult, wasmGetTotalCalibrationResult } from '../day07-wasm'
 
 benchmark('dayXX - part 1', part1)
 benchmark('dayXX - part 2', part2)
@@ -31,3 +32,6 @@ benchmark('day06 - part 1', getGuardsDistinctVisitedPositions)
 
 benchmark('day07 - part 1', getTotalCalibrationResult)
 benchmark('day07 - part 2', getRevisedTotalCalibrationResult)
+
+benchmark('day07 (wasm) - part 1', wasmGetTotalCalibrationResult)
+benchmark('day07 (wasm) - part 2', wasmGetRevisedTotalCalibrationResult)
