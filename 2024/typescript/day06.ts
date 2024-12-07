@@ -80,9 +80,9 @@ export const getPossiblePlacesForObstacles = () => {
       if (parseInt(lab[probePos.y]?.[probePos.x]) === probeDirIndex) {
         // console.log('coming from: ', pos.x, pos.y, 'to', probePos.x, probePos.y)
         // console.log('found', lab[probePos.y]?.[probePos.x], 'at', probePos)
-        const obstablePos = { x: pos.x + dir(dirIndex).x, y: pos.y + dir(dirIndex).y }
-        if (obstablePos.x !== startPos.x || obstablePos.y !== startPos.y) {
-          goodPlacesForObstacles.push(obstablePos)
+        const obstaclePos = { x: pos.x + dir(dirIndex).x, y: pos.y + dir(dirIndex).y }
+        if (obstaclePos.x !== startPos.x || obstaclePos.y !== startPos.y) {
+          goodPlacesForObstacles.push(obstaclePos)
         }
         break
       }
