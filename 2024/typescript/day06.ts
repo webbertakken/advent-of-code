@@ -47,9 +47,74 @@ export const getGuardsDistinctVisitedPositions = () => {
 console.log('The guard visited this many unique positions:', getGuardsDistinctVisitedPositions())
 
 // Part 2
-export const part2 = () => {
-  getInput()
+export const getPossiblePlacesForObstacles = () => {
+  const [lab, pos] = getLabAndGuardStartingPosition()
+  const startPos = { x: pos.x, y: pos.y }
 
-  return 0
+  // console.log(pos)
+  let dirIndex = 0
+  const goodPlacesForObstacles = []
+
+  const dir = (dirIndex: number) => directions[dirIndex % 4]
+  while (typeof lab[pos.y]?.[pos.x] !== 'undefined') {
+    // Probe for previous position with direction
+    const probeDirIndex = (dirIndex + 1) % 4
+
+    if (parseInt(lab[pos.y + dir(dirIndex).y]?.[pos.x + dir(dirIndex).x]) === probeDirIndex) {
+      // console.log('next step will be previous path')
+      // console.log('found', lab[pos.y]?.[pos.x], 'at', pos)
+      const possibleObstaclePos = { x: pos.x + dir(dirIndex).x * 2, y: pos.y + dir(dirIndex).y * 2 }
+      if (possibleObstaclePos.x !== startPos.x || possibleObstaclePos.y !== startPos.y) {
+        goodPlacesForObstacles.push({ x: pos.x + dir(dirIndex).x * 2, y: pos.y + dir(dirIndex).y * 2 })
+      }
+    }
+
+    let probePos = { x: pos.x, y: pos.y }
+    const expectedDirections = ['0', '1', '2', '3'].filter((a) => a !== `${probeDirIndex}`)
+    while (['.', '^', ...expectedDirections].includes(lab[probePos.y]?.[probePos.x])) {
+      probePos.x += dir(probeDirIndex).x
+      probePos.y += dir(probeDirIndex).y
+
+      // console.log('probing', probePos.x, probePos.y, lab[probePos.y]?.[probePos.x], 'looking for', probeDirIndex)
+
+      if (parseInt(lab[probePos.y]?.[probePos.x]) === probeDirIndex) {
+        // console.log('coming from: ', pos.x, pos.y, 'to', probePos.x, probePos.y)
+        // console.log('found', lab[probePos.y]?.[probePos.x], 'at', probePos)
+        const obstaclePos = { x: pos.x + dir(dirIndex).x, y: pos.y + dir(dirIndex).y }
+        if (obstaclePos.x !== startPos.x || obstaclePos.y !== startPos.y) {
+          goodPlacesForObstacles.push(obstaclePos)
+        }
+        break
+      }
+
+      if ([undefined, '#'].includes(lab[probePos.y]?.[probePos.x])) {
+        break
+      }
+    }
+    // console.log('---')
+
+    // first direction for each tile
+    if (['.', '^'].includes(lab[pos.y][pos.x])) {
+      lab[pos.y][pos.x] = (dirIndex % 4).toString()
+    }
+
+    // if guard hits a wall, change direction
+    if (lab[pos.y + dir(dirIndex).y]?.[pos.x + dir(dirIndex).x] === '#') {
+      dirIndex = (dirIndex + 1) % 4
+      continue
+    }
+
+    pos.x += dir(dirIndex).x
+    pos.y += dir(dirIndex).y
+  }
+
+  for (const obstacle of goodPlacesForObstacles) {
+    lab[obstacle.y][obstacle.x] = '@'
+  }
+
+  // lab.map((line) => console.log(line))
+  // console.log('good places for obstacles:', goodPlacesForObstacles)
+
+  return goodPlacesForObstacles.length
 }
-// console.log("Part 2:", part2());
+console.log('Number of places where an obstacle can be placed:', getPossiblePlacesForObstacles())
