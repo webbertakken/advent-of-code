@@ -14,7 +14,7 @@ const calculate = (a: number, b: number, operator: Operator): number => {
     case '*':
       return a * b
     case '||':
-      return parseInt(`${a}${b}`)
+      return Number(`${a}${b}`)
   }
 }
 
