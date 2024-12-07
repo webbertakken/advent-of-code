@@ -1,6 +1,6 @@
 import Library from '../lib'
 import { describe, test, vi, expect } from 'vitest'
-import { getGuardsDistinctVisitedPositions, part2 } from '../day06'
+import { getGuardsDistinctVisitedPositions, getPossiblePlacesForObstacles } from '../day06'
 
 describe('Day 06', async () => {
   describe('part1', () => {
