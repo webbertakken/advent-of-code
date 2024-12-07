@@ -18,7 +18,7 @@ impl From<String> for Operator {
             "+" => Operator::Add,
             "*" => Operator::Multiply,
             "||" => Operator::Concatenate,
-            _ => Operator::Add,
+            _ => panic!("Unsupported operator: {}", op),
         }
     }
 }
