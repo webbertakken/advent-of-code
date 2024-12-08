@@ -6,7 +6,7 @@ import { analiseSafetyAfterProblemDampener, analyseNumberOfSafeStrangeReports } 
 import { getSumOfAllInstructions, getSumOfEnabledInstructions } from '../day03'
 import { getCrossedMasCount, getXmasCount } from '../day04'
 import { getSumOfMiddlePageNumbersFromCorrectUpdates, getSumOfMiddlePageNumbersFromIncorrectUpdates } from '../day05'
-import { getGuardsDistinctVisitedPositions } from '../day06'
+import { getGuardsDistinctVisitedPositions, getPossiblePlacesForObstacles } from '../day06'
 import { getRevisedTotalCalibrationResult, getTotalCalibrationResult } from '../day07'
 import { getNumberOfAllAntiNodes, getNumberOfAntiNodes } from '../day08'
 
@@ -29,6 +29,7 @@ benchmark('day05 - part 1', getSumOfMiddlePageNumbersFromCorrectUpdates)
 benchmark('day05 - part 2', getSumOfMiddlePageNumbersFromIncorrectUpdates)
 
 benchmark('day06 - part 1', getGuardsDistinctVisitedPositions)
+benchmark('day06 - part 2', getPossiblePlacesForObstacles)
 
 benchmark('day07 - part 1', getTotalCalibrationResult)
 benchmark('day07 - part 2', getRevisedTotalCalibrationResult)
