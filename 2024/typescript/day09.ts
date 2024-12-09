@@ -43,7 +43,7 @@ function* defragmentPerBit(disk: string): Generator<number> {
       } else {
         // Read from right
         const { value, done } = fromEnd.next()
-        if (done) yield '.'
+        if (done) yield -1
 
         const [id, endPointerValue, endBitValue] = value
         endPointer = endPointerValue
