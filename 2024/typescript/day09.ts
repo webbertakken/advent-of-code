@@ -4,7 +4,7 @@ const getInput = (): string => Library.getInput('day09')
 
 const generateChecksum = (disk: number[]) => disk.reduce((acc, curr, index) => acc + curr * index, 0)
 
-function* defragmentPerBit(disk): Generator<number> {
+function* defragmentPerBit(disk: string): Generator<number> {
   function* takeFromEnd(disk: string): Generator<[number, number, number]> {
     let pointer = disk.length - 1
     while (pointer >= 0) {
@@ -45,9 +45,9 @@ function* defragmentPerBit(disk): Generator<number> {
         const { value, done } = fromEnd.next()
         if (done) yield '.'
 
-        const [id, pointer, bit] = value
-        endPointer = pointer
-        endBit = bit
+        const [id, endPointerValue, endBitValue] = value
+        endPointer = endPointerValue
+        endBit = endBitValue
 
         if (isFinished()) return
 
@@ -59,8 +59,9 @@ function* defragmentPerBit(disk): Generator<number> {
   }
 }
 
-function* defragmentPerFile(disk) {
+function* defragmentPerFile(disk: string) {
   const chunks = []
+
   for (let i = 0; i < disk.length; i++) {
     const numberOfBits = Number(disk[i])
     const id = i % 2 === 0 ? i / 2 : null
