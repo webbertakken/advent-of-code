@@ -9,6 +9,7 @@ import { getSumOfMiddlePageNumbersFromCorrectUpdates, getSumOfMiddlePageNumbersF
 import { getGuardsDistinctVisitedPositions, getPossiblePlacesForObstacles } from '../day06'
 import { getRevisedTotalCalibrationResult, getTotalCalibrationResult } from '../day07'
 import { getNumberOfAllAntiNodes, getNumberOfAntiNodes } from '../day08'
+import { getChecksumAfterDefragmentingPerBit, getChecksumAfterDefragmentingPerFile } from '../day09'
 
 benchmark('dayXX - part 1', part1)
 benchmark('dayXX - part 2', part2)
@@ -36,3 +37,6 @@ benchmark('day07 - part 2', getRevisedTotalCalibrationResult)
 
 benchmark('day08 - part 1', getNumberOfAntiNodes)
 benchmark('day08 - part 2', getNumberOfAllAntiNodes)
+
+benchmark('day09 - part 1', getChecksumAfterDefragmentingPerBit)
+benchmark('day09 - part 2', getChecksumAfterDefragmentingPerFile)
