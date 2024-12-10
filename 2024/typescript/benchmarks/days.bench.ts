@@ -1,5 +1,4 @@
 import { benchmark } from '../tests/testLib'
-
 import { part1, part2 } from '../dayXX'
 import { getTotalDistanceBetweenPairs, getTotalSimilarityScore } from '../day01'
 import { analiseSafetyAfterProblemDampener, analyseNumberOfSafeStrangeReports } from '../day02'
@@ -10,6 +9,7 @@ import { getGuardsDistinctVisitedPositions, getPossiblePlacesForObstacles } from
 import { getRevisedTotalCalibrationResult, getTotalCalibrationResult } from '../day07'
 import { getNumberOfAllAntiNodes, getNumberOfAntiNodes } from '../day08'
 import { getChecksumAfterDefragmentingPerBit, getChecksumAfterDefragmentingPerFile } from '../day09'
+import { getCombinedNumberOfTrails, getCombinedTrailheadScores } from '../day10'
 
 benchmark('dayXX - part 1', part1)
 benchmark('dayXX - part 2', part2)
@@ -40,3 +40,6 @@ benchmark('day08 - part 2', getNumberOfAllAntiNodes)
 
 benchmark('day09 - part 1', getChecksumAfterDefragmentingPerBit)
 benchmark('day09 - part 2', getChecksumAfterDefragmentingPerFile)
+
+benchmark('day10 - part 1', getCombinedTrailheadScores)
+benchmark('day10 - part 2', getCombinedNumberOfTrails)
