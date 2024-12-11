@@ -10,6 +10,7 @@ import { getRevisedTotalCalibrationResult, getTotalCalibrationResult } from '../
 import { getNumberOfAllAntiNodes, getNumberOfAntiNodes } from '../day08'
 import { getChecksumAfterDefragmentingPerBit, getChecksumAfterDefragmentingPerFile } from '../day09'
 import { getCombinedNumberOfTrails, getCombinedTrailheadScores } from '../day10'
+import { getStonesAfterBlinking25Times, getStonesAfterBlinking75Times } from '../day11'
 
 benchmark('dayXX - part 1', part1)
 benchmark('dayXX - part 2', part2)
@@ -43,3 +44,6 @@ benchmark('day09 - part 2', getChecksumAfterDefragmentingPerFile)
 
 benchmark('day10 - part 1', getCombinedTrailheadScores)
 benchmark('day10 - part 2', getCombinedNumberOfTrails)
+
+benchmark('day11 - part 1', getStonesAfterBlinking25Times)
+benchmark('day11 - part 2', getStonesAfterBlinking75Times)
