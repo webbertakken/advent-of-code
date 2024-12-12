@@ -11,6 +11,7 @@ import { getNumberOfAllAntiNodes, getNumberOfAntiNodes } from '../day08'
 import { getChecksumAfterDefragmentingPerBit, getChecksumAfterDefragmentingPerFile } from '../day09'
 import { getCombinedNumberOfTrails, getCombinedTrailheadScores } from '../day10'
 import { getStonesAfterBlinking25Times, getStonesAfterBlinking75Times } from '../day11'
+import { getCombinedPrice, getDiscountedPrice } from '../day12'
 
 benchmark('dayXX - part 1', part1)
 benchmark('dayXX - part 2', part2)
@@ -47,3 +48,6 @@ benchmark('day10 - part 2', getCombinedNumberOfTrails)
 
 benchmark('day11 - part 1', getStonesAfterBlinking25Times)
 benchmark('day11 - part 2', getStonesAfterBlinking75Times)
+
+benchmark('day12 - part 1', getCombinedPrice)
+benchmark('day12 - part 2', getDiscountedPrice)
