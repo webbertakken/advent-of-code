@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "bench": "vitest bench"
+    "bench": "vitest bench",
+    "new": "bun run scripts/createNewDay.ts"
   },
   "workspaces": [
     "visualisations",

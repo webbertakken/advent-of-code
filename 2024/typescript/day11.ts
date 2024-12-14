@@ -1,6 +1,6 @@
 import Library from './lib'
 
-const getInput = () => Library.getInput('day11').split(/\s+/).map(Number)
+const getStones = () => Library.getInput('day11').split(/\s+/).map(Number)
 
 const blink = (stone: number): number[] => {
   // 0 turns into 1
@@ -16,11 +16,8 @@ const blink = (stone: number): number[] => {
   return [(stone << 11) - (stone << 4) - (stone << 3)]
 }
 
-function* getStones(stones: number[], iteration: number, cache: Record<string, number> = {}): Generator<number> {
-  if (iteration === 0) {
-    yield stones.length
-    return
-  }
+function* getNextStones(stones: number[], iteration: number, cache: Record<string, number> = {}): Generator<number> {
+  if (iteration === 0) return yield stones.length
 
   for (const stone of stones) {
     for (const newStone of blink(stone)) {
@@ -33,7 +30,7 @@ function* getStones(stones: number[], iteration: number, cache: Record<string, n
 
       // Follow the tree and cache the value
       let cacheValue = 0
-      for (const value of getStones([newStone], iteration - 1, cache)) {
+      for (const value of getNextStones([newStone], iteration - 1, cache)) {
         cacheValue += value
         yield value
       }
@@ -42,21 +39,10 @@ function* getStones(stones: number[], iteration: number, cache: Record<string, n
   }
 }
 
-const getStonesAfterBlinking = (times: number) => {
-  return () => {
-    const stones = getInput()
-
-    let sum = 0
-    for (const value of getStones(stones, times)) sum += value
-
-    return sum
-  }
-}
-
 // Part 1
-export const getStonesAfterBlinking25Times = getStonesAfterBlinking(25)
+export const getStonesAfterBlinking25Times = () => getNextStones(getStones(), 25).toArray().sum()
 console.log('Stones after blinking 25 times:', getStonesAfterBlinking25Times())
 
 // Part 2
-export const getStonesAfterBlinking75Times = getStonesAfterBlinking(75)
+export const getStonesAfterBlinking75Times = () => getNextStones(getStones(), 75).toArray().sum()
 console.log('Stones after blinking 75 times:', getStonesAfterBlinking75Times())

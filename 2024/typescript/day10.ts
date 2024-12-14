@@ -10,7 +10,7 @@ const directions: Direction[] = [
   { x: 0, y: -1 },
 ]
 
-const getInput = () =>
+const getMap = () =>
   Library.getInput('day10')
     .split('\n')
     .map((line) => line.split('').map(Number))
@@ -43,26 +43,22 @@ function* findSummits(map: number[][], startPos: Position, nextHeight = 1): Gene
 
 // Part 1
 export const getCombinedTrailheadScores = () => {
-  const map = getInput()
+  const map = getMap()
 
-  let score = 0
-  for (const trailhead of getTrailheads(map)) {
-    score += new Set<string>([...findSummits(map, trailhead)].map(({ x, y }) => `${x},${y}`)).size
-  }
-
-  return score
+  return getTrailheads(map)
+    .toArray()
+    .map((trailhead) => new Set<string>([...findSummits(map, trailhead)].map(({ x, y }) => `${x},${y}`)).size)
+    .sum()
 }
 console.log('Scores of all trailheads combined:', getCombinedTrailheadScores())
 
 // Part 2
 export const getCombinedNumberOfTrails = () => {
-  const map = getInput()
+  const map = getMap()
 
-  let score = 0
-  for (const trailhead of getTrailheads(map)) {
-    score += [...findSummits(map, trailhead)].length
-  }
-
-  return score
+  return getTrailheads(map)
+    .toArray()
+    .map((trailhead) => findSummits(map, trailhead).toArray().length)
+    .sum()
 }
 console.log('Combined number of possible trails:', getCombinedNumberOfTrails())

@@ -1,3 +1,4 @@
+// @ts-expect-error
 import { initSync, basic_calculation } from './wasm_optimisations/pkg'
 import { readFileSync } from 'fs'
 
