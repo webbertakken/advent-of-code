@@ -18,9 +18,7 @@ export const getTotalDistanceBetweenPairs = () => {
   const [left, right] = getLists()
 
   let distance = 0
-  for (let i = 0; i < left.length; ++i) {
-    distance += Math.abs(left[i] - right[i])
-  }
+  for (const [i, leftNumber] of left.entries()) distance += Math.abs(leftNumber - right[i])
 
   return distance
 }
@@ -32,16 +30,10 @@ export const getTotalSimilarityScore = () => {
 
   // Count the number of times each number appears in list B
   const rightNumberCounts = new Map<number, number>()
-  for (const number of right) {
-    rightNumberCounts.set(number, (rightNumberCounts.get(number) ?? 0) + 1)
-  }
+  for (const rightNumber of right) rightNumberCounts.set(rightNumber, (rightNumberCounts.get(rightNumber) ?? 0) + 1)
 
-  // Get the count of each number in list A and multiply it by the number
-  let similarityScore = 0
-  for (const number of left) {
-    similarityScore += (rightNumberCounts.get(number) ?? 0) * number
-  }
+  const getSimilarityScore = (number: number) => (rightNumberCounts.get(number) ?? 0) * number
 
-  return similarityScore
+  return left.map(getSimilarityScore).sum()
 }
 console.log('Total similarity score:', getTotalSimilarityScore())

@@ -1,25 +1,25 @@
 import Library from '../lib'
-import { describe, test, it, vi, expect } from 'vitest'
+import { describe, it, vi, expect } from 'vitest'
 import { getMinimumCostToWinThePrize, getMinimumTokenCost, getMinimumTokenCostAfterAddingTenTrillion } from '../day13'
 
 describe('Day 13', async () => {
   describe('Calculations', () => {
-    test('works with example 1', () => {
+    it('works with example 1', () => {
       const machine = { aX: 94, aY: 34, bX: 22, bY: 67, prizeX: 8400, prizeY: 5400 }
       expect(getMinimumCostToWinThePrize(machine)).toEqual(280)
     })
 
-    test('works with example 2', () => {
+    it('works with example 2', () => {
       const machine = { aX: 26, aY: 66, bX: 67, bY: 21, prizeX: 12748, prizeY: 12176 }
       expect(getMinimumCostToWinThePrize(machine)).toEqual(0)
     })
 
-    test('works with example 3', () => {
+    it('works with example 3', () => {
       const machine = { aX: 17, aY: 86, bX: 84, bY: 37, prizeX: 7870, prizeY: 6450 }
       expect(getMinimumCostToWinThePrize(machine)).toEqual(200)
     })
 
-    test('works with example 4', () => {
+    it('works with example 4', () => {
       const machine = { aX: 69, aY: 23, bX: 27, bY: 71, prizeX: 18641, prizeY: 10279 }
       expect(getMinimumCostToWinThePrize(machine)).toEqual(0)
     })
@@ -59,27 +59,27 @@ describe('Day 13', async () => {
   })
 
   describe('getMinimumTokenCost', () => {
-    test('works with example input', () => {
+    it('works with example input', () => {
       const getInput = vi.spyOn(Library, 'getInput').mockImplementation(Library.getExampleInput)
       expect(getMinimumTokenCost()).toEqual(489)
       expect(getInput).toHaveBeenCalledTimes(1)
       getInput.mockRestore()
     })
 
-    test('works with real input', () => {
+    it('works with real input', () => {
       expect(getMinimumTokenCost()).toEqual(29438)
     })
   })
 
   describe('getMinimumTokenCostAfterAddingTenTrillion', () => {
-    test('works with example input', () => {
+    it('works with example input', () => {
       const getInput = vi.spyOn(Library, 'getInput').mockImplementation(Library.getExampleInput)
       expect(getMinimumTokenCostAfterAddingTenTrillion()).toEqual(875318608908)
       expect(getInput).toHaveBeenCalledTimes(1)
       getInput.mockRestore()
     })
 
-    test('works with real input', () => {
+    it('works with real input', () => {
       expect(getMinimumTokenCostAfterAddingTenTrillion()).toEqual(104958599303720)
     })
   })

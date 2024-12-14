@@ -1,6 +1,6 @@
 import Library from './lib'
 
-const getInput = () =>
+const getEquations = () =>
   Library.getInput('day07')
     .split('\n')
     .map((line) => line.replace(/:/, '').split(/\s+/).map(Number))
@@ -8,14 +8,10 @@ const getInput = () =>
 type Operator = '+' | '*' | '||'
 
 const calculate = (a: number, b: number, operator: Operator): number => {
-  switch (operator) {
-    case '+':
-      return a + b
-    case '*':
-      return a * b
-    case '||':
-      return Number(`${a}${b}`)
-  }
+  if (operator === '+') return a + b
+  if (operator === '*') return a * b
+  if (operator === '||') return Number(`${a}${b}`)
+  throw new Error('Invalid operator')
 }
 
 const getCalibrationValue = (parts: number[], expectation: number, operators: Operator[]): number => {
@@ -34,26 +30,16 @@ const getCalibrationValue = (parts: number[], expectation: number, operators: Op
 
 // Part 1
 export const getTotalCalibrationResult = () => {
-  const equations = getInput()
-
-  let sum = 0
-  for (const [expectation, ...parts] of equations) {
-    sum += getCalibrationValue(parts, expectation, ['+', '*'])
-  }
-
-  return sum
+  return getEquations()
+    .map(([expectation, ...parts]) => getCalibrationValue(parts, expectation, ['+', '*']))
+    .sum()
 }
 console.log('Calibration result for operators + and * is:', getTotalCalibrationResult())
 
 // Part 2
 export const getRevisedTotalCalibrationResult = () => {
-  const equations = getInput()
-
-  let sum = 0
-  for (const [expectation, ...parts] of equations) {
-    sum += getCalibrationValue(parts, expectation, ['+', '*', '||'])
-  }
-
-  return sum
+  return getEquations()
+    .map(([expectation, ...parts]) => getCalibrationValue(parts, expectation, ['+', '*', '||']))
+    .sum()
 }
 console.log('Calibration result for operators +, * and || is:', getRevisedTotalCalibrationResult())
