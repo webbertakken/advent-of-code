@@ -13,6 +13,7 @@ import { getCombinedNumberOfTrails, getCombinedTrailheadScores } from '../day10'
 import { getStonesAfterBlinking25Times, getStonesAfterBlinking75Times } from '../day11'
 import { getCombinedPrice, getDiscountedPrice } from '../day12'
 import { getMinimumTokenCost, getMinimumTokenCostAfterAddingTenTrillion } from '../day13'
+import { getNumberOfSecondsForEasterEgg, getSafetyFactorAfter100Seconds } from '../day14'
 
 benchmark('dayXX - part 1', part1)
 benchmark('dayXX - part 2', part2)
@@ -55,3 +56,6 @@ benchmark('day12 - part 2', getDiscountedPrice)
 
 benchmark('day13 - part 1', getMinimumTokenCost)
 benchmark('day13 - part 2', getMinimumTokenCostAfterAddingTenTrillion)
+
+benchmark('day14 - part 1', getSafetyFactorAfter100Seconds)
+benchmark('day14 - part 2', getNumberOfSecondsForEasterEgg)

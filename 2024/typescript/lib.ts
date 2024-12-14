@@ -9,6 +9,7 @@ const INPUT_PATH = join(dir, '../', 'input')
 declare global {
   interface Array<T extends number | bigint> {
     sum(): T
+    multiply(): T
   }
 }
 
@@ -17,6 +18,14 @@ Array.prototype.sum = function () {
     return this.reduce((a: bigint, b: bigint) => a + b, 0n)
   } else {
     return this.reduce((a: number, b: number) => a + b, 0)
+  }
+}
+
+Array.prototype.multiply = function () {
+  if (typeof this[0] === 'bigint') {
+    return this.reduce((a: bigint, b: bigint) => a * b, 1n)
+  } else {
+    return this.reduce((a: number, b: number) => a * b, 1)
   }
 }
 
