@@ -22,12 +22,12 @@ export function getMinimumCostToWinThePrize(machine: Machine): number {
   const { aX, aY, bX, bY, prizeX, prizeY } = machine
 
   // Cramer's rule
-  const commonDenominator = aX * bY - aY * bX
-  const denominatorA = prizeX * bY - prizeY * bX
-  const denominatorB = aX * prizeY - aY * prizeX
+  const denominator = aX * bY - aY * bX
+  const determinantA = prizeX * bY - prizeY * bX
+  const determinantB = aX * prizeY - aY * prizeX
 
   // There is no common denominator
-  if (commonDenominator === 0) {
+  if (denominator === 0) {
     // Check if it can be done with 1 button instead - performance diff is negligible
     const aStepsX = prizeX / aX
     const aStepsY = prizeY / aY
@@ -45,8 +45,8 @@ export function getMinimumCostToWinThePrize(machine: Machine): number {
     return 0
   }
 
-  const aSteps = denominatorA / commonDenominator
-  const bSteps = denominatorB / commonDenominator
+  const aSteps = determinantA / denominator
+  const bSteps = determinantB / denominator
 
   if (!Number.isInteger(aSteps) || !Number.isInteger(bSteps) || aSteps < 0 || bSteps < 0) return 0
 
