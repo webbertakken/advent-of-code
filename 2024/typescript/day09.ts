@@ -1,8 +1,12 @@
 import Library from './lib'
 
-const getInput = (): string => Library.getInput('day09')
+const EMPTY = -1 as const
 
-const generateChecksum = (disk: number[]) => disk.reduce((acc, curr, index) => acc + curr * index, 0)
+const getDisk = (): string => Library.getInput('day09')
+
+const generateChecksum = (disk: number[]) => {
+  return disk.map((n) => (n === EMPTY ? 0 : n)).reduce((checksum, bit, index) => checksum + bit * index, 0)
+}
 
 function* defragmentPerBit(disk: string): Generator<number> {
   function* takeFromEnd(disk: string): Generator<[number, number, number]> {
@@ -60,34 +64,34 @@ function* defragmentPerBit(disk: string): Generator<number> {
 }
 
 function* defragmentPerFile(disk: string) {
-  const chunks = []
+  const space: [number, number][] = []
 
   for (let i = 0; i < disk.length; i++) {
     const numberOfBits = Number(disk[i])
-    const id = i % 2 === 0 ? i / 2 : null
-    chunks.push([id, numberOfBits])
+    const id = i % 2 === 0 ? i / 2 : EMPTY
+    space.push([id, numberOfBits])
   }
 
-  for (let rightIndex = chunks.length - 1; rightIndex >= 0; rightIndex--) {
-    if (chunks[rightIndex][0] === null) continue
+  for (let rightIndex = space.length - 1; rightIndex >= 0; rightIndex--) {
+    if (space[rightIndex][0] === EMPTY) continue
 
-    for (let leftIndex = 0; leftIndex < chunks.length; leftIndex++) {
-      if (chunks[leftIndex][0] !== null) continue
+    for (let leftIndex = 0; leftIndex < space.length; leftIndex++) {
+      if (space[leftIndex][0] !== EMPTY) continue
       if (leftIndex >= rightIndex) break
 
-      // Check if there is enough space to move the chunk
-      const spaceLeft = chunks[leftIndex][1] - chunks[rightIndex][1]
+      // Check if there is enough space to move the whole file
+      const spaceLeft = space[leftIndex][1] - space[rightIndex][1]
       if (spaceLeft < 0) continue
 
-      // Remove the chunk from the right
-      const chunk = chunks[rightIndex]
-      chunks[rightIndex] = [null, chunk[1]]
+      // Remove the file from the right
+      const file = space[rightIndex]
+      space[rightIndex] = [EMPTY, file[1]]
 
-      // Move the chunk to the left
-      if (spaceLeft === 0) chunks[leftIndex] = chunk
+      // Move the file to the left
+      if (spaceLeft === 0) space[leftIndex] = file
       if (spaceLeft > 0) {
-        chunks[leftIndex] = chunk
-        chunks.splice(leftIndex + 1, 0, [null, spaceLeft])
+        space[leftIndex] = file
+        space.splice(leftIndex + 1, 0, [EMPTY, spaceLeft])
         rightIndex++
       }
 
@@ -95,7 +99,7 @@ function* defragmentPerFile(disk: string) {
     }
   }
 
-  for (const [id, numberOfBits] of chunks) {
+  for (const [id, numberOfBits] of space) {
     for (let i = 0; i < numberOfBits; i++) {
       yield id
     }
@@ -103,17 +107,9 @@ function* defragmentPerFile(disk: string) {
 }
 
 // Part 1
-export const getChecksumAfterDefragmentingPerBit = () => {
-  const disk = getInput()
-
-  return generateChecksum([...defragmentPerBit(disk)])
-}
+export const getChecksumAfterDefragmentingPerBit = () => generateChecksum([...defragmentPerBit(getDisk())])
 console.log('Checksum after defragmenting per bit:', getChecksumAfterDefragmentingPerBit())
 
 // Part 2
-export const getChecksumAfterDefragmentingPerFile = () => {
-  const disk = getInput()
-
-  return generateChecksum([...defragmentPerFile(disk)])
-}
+export const getChecksumAfterDefragmentingPerFile = () => generateChecksum([...defragmentPerFile(getDisk())])
 console.log('Checksum after defragmenting per file:', getChecksumAfterDefragmentingPerFile())
