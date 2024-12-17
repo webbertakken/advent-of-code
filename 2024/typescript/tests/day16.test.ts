@@ -19,7 +19,7 @@ describe('Day 16', async () => {
     })
 
     it('works with real input', () => {
-      // expect(part1()).toEqual(0)
+      expect(part1()).toEqual(85432)
     })
   })
 

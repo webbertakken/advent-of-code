@@ -1,5 +1,15 @@
 import Library from './lib'
-import { findBestPath, directions, Position } from './lib/findBestPath'
+
+export type Direction = { x: number; y: number }
+export type Position = { x: number; y: number }
+
+// Cardinal directions in order: Up, Right, Down, Left
+export const directions: Direction[] = [
+  { x: 0, y: -1 },
+  { x: 1, y: 0 },
+  { x: 0, y: 1 },
+  { x: -1, y: 0 },
+] as const
 
 const possibleTiles = ['.', '#', 'S', 'E', ' '] as const
 
@@ -7,14 +17,38 @@ type Tile = (typeof possibleTiles)[number]
 
 interface Node extends Position {
   value: Tile
+  cameFrom?: Node
+  couldHaveComeFrom: Set<Node>
+  cost?: number
 }
 
-const manhattanHeuristic = (current: Node, goal: Node): number => {
-  return Math.abs(current.x - goal.x) + Math.abs(current.y - goal.y)
+const getInput = () =>
+  Library.getInput('day16')
+    .split('\n')
+    .map((line) => line.split('')) as Tile[][]
+
+const getMatrix = (): [Node[][], Node, Node] => {
+  const layout = getInput()
+
+  const nodeLayout: Node[][] = []
+  let start: Node = { x: 0, y: 0, value: 'S', couldHaveComeFrom: new Set() }
+  let goal: Node = { x: 0, y: 0, value: 'E', couldHaveComeFrom: new Set() }
+  for (const [y, row] of layout.entries()) {
+    nodeLayout[y] = []
+    for (const [x, value] of row.entries()) {
+      nodeLayout[y][x] = { x, y, value, couldHaveComeFrom: new Set() }
+      if (value === 'S') start = nodeLayout[y][x]
+      if (value === 'E') goal = nodeLayout[y][x]
+    }
+  }
+
+  return [nodeLayout, start, goal]
 }
 
-const getCost = (prev: Node, current: Node, next: Node): number => {
-  if (next.value === '#') return Infinity
+const getCost = (current: Node, next: Node): number => {
+  const prev = current.cameFrom
+
+  // If there is no previous node, we are at the start, facing east
   if (!prev) {
     if (next.x === current.x - 1) return 2001
     if (next.y !== current.y) return 1001
@@ -35,36 +69,47 @@ const getCost = (prev: Node, current: Node, next: Node): number => {
   throw new Error('Invalid angle')
 }
 
-const getInput = () =>
-  Library.getInput('day16')
-    .split('\n')
-    .map((line) => line.split('')) as Tile[][]
-
 // Part 1
 export const part1 = () => {
-  const layout = getInput()
+  const [matrix, start, goal] = getMatrix()
 
-  const nodeLayout: Node[][] = []
-  let start: Node = { x: 0, y: 0, value: 'S' }
-  let goal: Node = { x: 0, y: 0, value: 'E' }
-  for (const [y, row] of layout.entries()) {
-    nodeLayout[y] = []
-    for (const [x, value] of row.entries()) {
-      if (value === 'S') start = { x, y, value }
-      if (value === 'E') goal = { x, y, value }
-      nodeLayout[y][x] = { x, y, value }
+  const getNeighbours = (node: Node): [Node, number][] => {
+    const neighbours: [Node, number][] = []
+    for (const direction of directions) {
+      const next = matrix[node.y + direction.y]?.[node.x + direction.x]
+      if (!next) throw new Error('Out of bounds')
+      if (next.value === '#') continue
+      neighbours.push([next, getCost(node, next)])
+    }
+    return neighbours
+  }
+
+  // Depth first search
+  const walk = (current: Node) => {
+    // console.log('Walking', current.x, current.y, current.value, 'cost so far', current.cost ?? 0)
+    if (current === goal) {
+      console.log('Reached goal', current.x, current.y, current.value, 'with cost:', current.cost)
+      return
+    }
+
+    const neighbours = getNeighbours(current)
+    for (const [neighbour, cost] of neighbours) {
+      // console.log('Exploring neighbour', neighbour.x, neighbour.y, neighbour.value, 'cost:', cost)
+      const pathToNeighbourCost = (current.cost ?? 0) + cost
+
+      if (neighbour.cost === undefined || pathToNeighbourCost < neighbour.cost) {
+        neighbour.cost = pathToNeighbourCost
+        neighbour.cameFrom = current
+        walk(neighbour)
+      }
     }
   }
 
-  const result = findBestPath(nodeLayout, start, goal, getCost, manhattanHeuristic)!
+  walk(start)
 
-  // Visualize the path
-  for (const [node] of result) layout[node.y][node.x] = ' '
-  layout.map((line) => console.log(line.join('')))
-
-  return result?.map(([_, cost]) => cost).sum()
+  return goal.cost
 }
-console.log('Part 1:', part1()) // 85440 too high
+console.log('Part 1:', part1())
 
 // Part 2
 export const part2 = () => {
@@ -72,4 +117,3 @@ export const part2 = () => {
 
   return 0
 }
-// console.log("Part 2:", part2());

@@ -13,13 +13,13 @@ export const directions: Direction[] = [
  * Based on the A* algorithm, finds the fastest path from start to goal.
  * Weighted by the cost of moving from one position to another.
  */
-export const findBestPath = <T extends Position>(
+export const aStar = <T extends Position>(
   layout: T[][],
   start: T,
   goal: T,
   getCost: (prev: T, current: T, next: T) => number,
   heuristic: (current: T, goal: T) => number,
-) => {
+): [T, number][] | null => {
   const openSet = new Set<T>([start])
   const cameFrom = new Map<T, [T, number]>()
 
