@@ -19,9 +19,7 @@ export const aStar = <T extends Position>(
   goal: T,
   getCost: (prev: T, current: T, next: T) => number,
   heuristic: (current: T, goal: T) => number,
-): [T, number][][] => {
-  const possiblePaths: [T, number][][] = []
-
+): [T, number][] | null => {
   const openSet = new Set<T>([start])
   const cameFrom = new Map<T, [T, number]>()
 
@@ -62,10 +60,7 @@ export const aStar = <T extends Position>(
 
   while (openSet.size > 0) {
     const current = getNodeWithLowestFScore()
-    if (current.x === goal.x && current.y === goal.y) {
-      possiblePaths.push(reconstructPath(current))
-      break
-    }
+    if (current.x === goal.x && current.y === goal.y) return reconstructPath(current)
 
     // Explore neighbours of current
     openSet.delete(current)
@@ -73,10 +68,12 @@ export const aStar = <T extends Position>(
       const next = layout[current.y + direction.y]?.[current.x + direction.x]
       if (!next) continue
       const [prev] = cameFrom.get(current)! || []
+
       const cost = getCost(prev, current, next)
       const tentativeGScore = (gScore.get(current) ?? Infinity) + cost
       if (tentativeGScore < (gScore.get(next) ?? Infinity)) {
         cameFrom.set(next, [current, cost])
+
         gScore.set(next, tentativeGScore)
         fScore.set(next, tentativeGScore + heuristic(next, goal))
         openSet.add(next)
@@ -84,5 +81,5 @@ export const aStar = <T extends Position>(
     }
   }
 
-  return possiblePaths
+  return null
 }
