@@ -10,7 +10,7 @@ export interface Node extends Position {
 }
 
 const getInput = () =>
-  Library.getInput('day16-example4')
+  Library.getInput('day16')
     .split('\n')
     .map((line) => line.split('')) as Tile[][]
 
