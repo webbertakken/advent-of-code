@@ -9,6 +9,7 @@ export const directions: Direction[] = [
   { x: -1, y: 0 },
 ] as const
 
+// Use case: Cardinal directions (only move in 4 directions)
 export const manhattanHeuristic = <T extends Position>(current: T, goal: T): number => {
   return Math.sqrt(Math.abs(current.x - goal.x) ** 2 + Math.abs(current.y - goal.y) ** 2)
 }
