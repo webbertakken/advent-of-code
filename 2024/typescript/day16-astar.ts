@@ -1,11 +1,11 @@
 import Library from './lib'
-import { aStar, directions, Position } from './lib/aStar'
+import { aStar, directions, manhattanHeuristic, Position } from './lib/aStar'
 
 const possibleTiles = ['.', '#', 'S', 'E', ' '] as const
 
 type Tile = (typeof possibleTiles)[number]
 
-interface Node extends Position {
+export interface Node extends Position {
   value: Tile
 }
 
@@ -13,10 +13,6 @@ const getInput = () =>
   Library.getInput('day16-example4')
     .split('\n')
     .map((line) => line.split('')) as Tile[][]
-
-const manhattanHeuristic = (current: Node, goal: Node): number => {
-  return Math.sqrt(Math.abs(current.x - goal.x) ** 2 + Math.abs(current.y - goal.y) ** 2)
-}
 
 const getCost = (prev: Node, current: Node, next: Node): number => {
   if (next.value === '#') return Infinity
