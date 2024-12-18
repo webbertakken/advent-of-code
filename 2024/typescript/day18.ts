@@ -5,7 +5,7 @@ const possibleTiles = ['.', '#'] as const
 
 type Tile = (typeof possibleTiles)[number]
 
-export interface Node extends Position {
+interface Node extends Position {
   value: Tile
 }
 
