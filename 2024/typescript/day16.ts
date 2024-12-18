@@ -123,8 +123,7 @@ export const part2 = () => {
   const markedTiles = new Set<string>()
   initialBestPath.forEach(({ x, y }) => markedTiles.add(`${x},${y}`))
 
-  for (const [index, node] of initialBestPath.entries()) {
-    // console.log(`Iteration ${index}. Replacing path node ${node.x},${node.y} with a wall.`)
+  for (const node of initialBestPath) {
     const [matrixCopy, start, goal] = getMatrix()
     matrixCopy[node.y][node.x].value = '#'
     const { bestCost, bestPath } = depthFirstSearch(matrixCopy, start, goal, true)
