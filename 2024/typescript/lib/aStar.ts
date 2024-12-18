@@ -9,6 +9,10 @@ export const directions: Direction[] = [
   { x: -1, y: 0 },
 ] as const
 
+export const manhattanHeuristic = <T extends Position>(current: T, goal: T): number => {
+  return Math.sqrt(Math.abs(current.x - goal.x) ** 2 + Math.abs(current.y - goal.y) ** 2)
+}
+
 /**
  * Based on the A* algorithm, finds the fastest path from start to goal.
  * Weighted by the cost of moving from one position to another.
@@ -42,7 +46,6 @@ export const aStar = <T extends Position>(
   }
 
   const reconstructPath = (current: T): [T, number][] => {
-    console.log('Reconstructing path')
     const path: [T, number][] = [[current, 0]]
 
     let totalCost = 0
