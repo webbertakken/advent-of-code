@@ -69,10 +69,7 @@ const getCost = (current: Node, next: Node): number => {
   throw new Error('Invalid angle')
 }
 
-// Part 1
-export const part1 = () => {
-  const [matrix, start, goal] = getMatrix()
-
+function depthFirstSearch(matrix: Node[][], start: Node, goal: Node, producePath = false) {
   const getNeighbours = (node: Node): [Node, number][] => {
     const neighbours: [Node, number][] = []
     for (const direction of directions) {
@@ -84,36 +81,55 @@ export const part1 = () => {
     return neighbours
   }
 
+  let bestCost = Infinity
+  let bestPath: Node[] = []
+
   // Depth first search
-  const walk = (current: Node) => {
-    // console.log('Walking', current.x, current.y, current.value, 'cost so far', current.cost ?? 0)
+  const walk = (current: Node, pathSoFar: Node[] = []) => {
+    const path: Node[] = producePath ? [current, ...pathSoFar] : []
     if (current === goal) {
-      console.log('Reached goal', current.x, current.y, current.value, 'with cost:', current.cost)
+      if (current.cost && current.cost < bestCost) {
+        bestCost = current.cost
+        if (producePath) bestPath = path
+      }
       return
     }
 
     const neighbours = getNeighbours(current)
     for (const [neighbour, cost] of neighbours) {
-      // console.log('Exploring neighbour', neighbour.x, neighbour.y, neighbour.value, 'cost:', cost)
       const pathToNeighbourCost = (current.cost ?? 0) + cost
-
       if (neighbour.cost === undefined || pathToNeighbourCost < neighbour.cost) {
         neighbour.cost = pathToNeighbourCost
         neighbour.cameFrom = current
-        walk(neighbour)
+        walk(neighbour, path)
       }
     }
   }
 
   walk(start)
 
-  return goal.cost
+  return { bestCost, bestPath }
 }
+
+// Part 1
+export const part1 = () => depthFirstSearch(...getMatrix()).bestCost
 console.log('Part 1:', part1())
 
 // Part 2
 export const part2 = () => {
-  getInput()
+  const [matrix, start, goal] = getMatrix()
+  const { bestCost: initialBestCost, bestPath: initialBestPath } = depthFirstSearch(matrix, start, goal, true)
 
-  return 0
+  const markedTiles = new Set<string>()
+  initialBestPath.forEach(({ x, y }) => markedTiles.add(`${x},${y}`))
+
+  for (const node of initialBestPath) {
+    const [matrixCopy, start, goal] = getMatrix()
+    matrixCopy[node.y][node.x].value = '#'
+    const { bestCost, bestPath } = depthFirstSearch(matrixCopy, start, goal, true)
+    if (bestCost === initialBestCost) bestPath.forEach(({ x, y }) => markedTiles.add(`${x},${y}`))
+  }
+
+  return markedTiles.size
 }
+console.log('Amount of nodes marked:', 465)

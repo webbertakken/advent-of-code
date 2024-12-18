@@ -24,15 +24,20 @@ describe('Day 16', async () => {
   })
 
   describe('part2', () => {
-    it('works with example input', () => {
-      // const getInput = vi.spyOn(Library, "getInput").mockImplementation(Library.getExampleInput)
-      // expect(part2()).toEqual(0)
-      // expect(getInput).toHaveBeenCalledTimes(1)
-      // getInput.mockRestore()
+    it('works with example 1', () => {
+      const getInput = vi.spyOn(Library, 'getInput').mockImplementation(Library.getExampleInput)
+      expect(part2()).toEqual(45)
+      expect(getInput).toHaveBeenCalledTimes(38)
+      getInput.mockRestore()
     })
 
-    it('works with real input', () => {
-      // expect(part2()).toEqual(0)
+    it('works with example 2', () => {
+      const getInput = vi.spyOn(Library, 'getInput').mockImplementation(Library.getExample2Input)
+      expect(part2()).toEqual(64)
+      expect(getInput).toHaveBeenCalledTimes(50)
+      getInput.mockRestore()
     })
+
+    // Todo - Add test that runs part 2 with real input, after making it more performant
   })
 })
