@@ -6,7 +6,7 @@ describe('Day 20', async () => {
   describe('part1', () => {
     it('works with example input', () => {
       const getInput = vi.spyOn(Library, 'getInput').mockImplementation(Library.getExampleInput)
-      expect(part1()).toEqual(0)
+      expect(part1()).toEqual(140)
       expect(getInput).toHaveBeenCalledTimes(1)
       getInput.mockRestore()
     })
