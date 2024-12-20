@@ -27,11 +27,12 @@ export const aStar = <T extends Position>(
   layout: T[][],
   start: T,
   goal: T,
-  getCost: (prev: T, current: T, next: T) => number,
+  getCost: (prev: T | undefined, current: T, next: T, step: number) => number,
   heuristic: (current: T, goal: T) => number,
 ): [T, number][] | null => {
   const openSet = new Set<T>([start])
   const cameFrom = new Map<T, [T, number]>()
+  const indexMap = new Map<T, number>()
 
   const gScore = new Map<T, number>().set(start, 0)
   const fScore = new Map<T, number>().set(start, heuristic(start, goal))
@@ -76,12 +77,14 @@ export const aStar = <T extends Position>(
     for (const direction of directions) {
       const next = layout[current.y + direction.y]?.[current.x + direction.x]
       if (!next) continue
-      const [prev] = cameFrom.get(current)! || []
+      const index = indexMap.get(current) || 0
+      const [prev] = cameFrom.get(current) || []
 
-      const cost = getCost(prev, current, next)
+      const cost = getCost(prev, current, next, index)
       const tentativeGScore = (gScore.get(current) ?? Infinity) + cost
       if (tentativeGScore < (gScore.get(next) ?? Infinity)) {
         cameFrom.set(next, [current, cost])
+        indexMap.set(next, index + 1)
 
         gScore.set(next, tentativeGScore)
         fScore.set(next, tentativeGScore + heuristic(next, goal))
