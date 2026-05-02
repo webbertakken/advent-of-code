@@ -4,7 +4,7 @@
 
 - JavaScript runtime engine (choose one)
   - [Bun](https://bun.sh/)
-  - Node (using [Volta](https://volta.sh/))
+  - Node (using [mise](https://mise.jdx.dev/) — see `mise.toml`)
 
 ## Usage
 
