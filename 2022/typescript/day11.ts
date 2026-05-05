@@ -34,8 +34,13 @@ const getMonkeys = (isWorrying: boolean) => {
     divisorsMultiplied *= Number(divisor)
     const calm = (x: number) => (isWorrying ? Math.floor(x / 3) : x % divisorsMultiplied)
     const test = (x: number) => (x % Number(divisor) === 0 ? Number(yes) : Number(no))
+    // The parameter name `old` is referenced by the eval'd `op` string at
+    // runtime (e.g. `op === "old * 19"`). Renaming it (e.g. to `_old`)
+    // breaks the eval at runtime even though TS / oxlint think the
+    // parameter is unused.
     // noinspection JSUnusedLocalSymbols
-    const operation = (_old: number) => eval(op)
+    // eslint-disable-next-line no-unused-vars -- read by eval(op) at runtime
+    const operation = (old: number) => eval(op)
     monkeys.push(createMonkey(startItems, operation, calm, test))
   })
 
