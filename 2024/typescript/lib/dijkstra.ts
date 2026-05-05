@@ -21,7 +21,9 @@ export const directions: Direction[] = [
 // neighbors function: given a node, returns its immediate neighbors and their costs.
 export type NeighboursFn = (node: Node, prev?: Node) => ReadonlyArray<Edge>
 
-export const dijkstra = (getNeighbours: NeighboursFn): ((start: Node) => Map<Node, { cost: number; path: Node[] }>) => {
+export const dijkstra = (
+  getNeighbours: NeighboursFn,
+): ((start: Node) => Map<Node, { cost: number; path: Node[] }>) => {
   // Returns a function that, when given a start node, computes shortest paths
   return (start: Node) => {
     // Add a predecessor map
@@ -80,7 +82,9 @@ export const dijkstra = (getNeighbours: NeighboursFn): ((start: Node) => Map<Nod
     }
 
     // Initial distance map: start node with dist 0
-    const initialDist = new Map<Node, { cost: number; path: Node[] }>([[start, { cost: 0, path: [] }]])
+    const initialDist = new Map<Node, { cost: number; path: Node[] }>([
+      [start, { cost: 0, path: [] }],
+    ])
     const initialVisited = new Set<Node>()
     const initialFrontier: [Node, number][] = [[start, 0]]
 

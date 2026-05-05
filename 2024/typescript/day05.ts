@@ -11,7 +11,8 @@ const createSortByOrderingRules = (orderingRules: number[][]) => {
     sortRegistry.set(left, [...(sortRegistry.get(left) ?? []), right])
   }
 
-  return (a: number, b: number): number => (sortRegistry.has(a) && sortRegistry.get(a)?.includes(b) ? -1 : 1)
+  return (a: number, b: number): number =>
+    sortRegistry.has(a) && sortRegistry.get(a)?.includes(b) ? -1 : 1
 }
 
 const getSumOfMiddlePageNumbers =
@@ -32,8 +33,14 @@ const getSumOfMiddlePageNumbers =
 
 // Part 1
 export const getSumOfMiddlePageNumbersFromCorrectUpdates = getSumOfMiddlePageNumbers()
-console.log('Sum of middle page numbers from correct updates:', getSumOfMiddlePageNumbersFromCorrectUpdates())
+console.log(
+  'Sum of middle page numbers from correct updates:',
+  getSumOfMiddlePageNumbersFromCorrectUpdates(),
+)
 
 // Part 2
 export const getSumOfMiddlePageNumbersFromIncorrectUpdates = getSumOfMiddlePageNumbers(false)
-console.log('Sum of middle page numbers from incorrect updates:', getSumOfMiddlePageNumbersFromIncorrectUpdates())
+console.log(
+  'Sum of middle page numbers from incorrect updates:',
+  getSumOfMiddlePageNumbersFromIncorrectUpdates(),
+)

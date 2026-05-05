@@ -1,6 +1,10 @@
 import Library from '../lib'
 import { describe, it, vi, expect } from 'vitest'
-import { getMinimumCostToWinThePrize, getMinimumTokenCost, getMinimumTokenCostAfterAddingTenTrillion } from '../day13'
+import {
+  getMinimumCostToWinThePrize,
+  getMinimumTokenCost,
+  getMinimumTokenCostAfterAddingTenTrillion,
+} from '../day13'
 
 describe('Day 13', async () => {
   describe('Calculations', () => {

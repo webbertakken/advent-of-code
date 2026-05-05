@@ -1,6 +1,9 @@
 import Library from '../lib'
 import { describe, it, vi, expect } from 'vitest'
-import { getSumOfMiddlePageNumbersFromCorrectUpdates, getSumOfMiddlePageNumbersFromIncorrectUpdates } from '../day05'
+import {
+  getSumOfMiddlePageNumbersFromCorrectUpdates,
+  getSumOfMiddlePageNumbersFromIncorrectUpdates,
+} from '../day05'
 
 describe('Day 05', async () => {
   describe('getSumOfMiddlePageNumbersFromCorrectUpdates', () => {

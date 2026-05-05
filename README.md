@@ -2,8 +2,8 @@
 
 Me participating in [Advent of Code](https://adventofcode.com/2024/about).
 
-To practice, I try to solve the problems in different languages; 
-ideally in a way that is idiomatic to the language.
+To practice, I try to solve the problems in different languages; ideally in a way that is idiomatic
+to the language.
 
 ## Getting started
 
@@ -112,7 +112,7 @@ These are the mean stats over multiple sample runs.
 ### Day 16
 
 - Part 1: 133.20 ms
-- Part 2: > 2 minutes ⚠️ 
+- Part 2: > 2 minutes ⚠️
 
 ### Day 17
 

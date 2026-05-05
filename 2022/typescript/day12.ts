@@ -11,7 +11,12 @@ const reconstructPath = (cameFrom: { [key: string]: string }, current: string) =
   return totalPath
 }
 
-const aStar = (matrix: string[][], start: string, end: string, heuristic: (a: string, b: string) => number): any => {
+const aStar = (
+  matrix: string[][],
+  start: string,
+  end: string,
+  heuristic: (a: string, b: string) => number,
+): any => {
   const sizeX = matrix.length
   const sizeY = matrix[0].length
   const toExplore = [start]

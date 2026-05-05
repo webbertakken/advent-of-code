@@ -1,36 +1,36 @@
-import React from "react";
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { FONT_FAMILY } from "./constants";
+import React from 'react'
+import { spring, useCurrentFrame, useVideoConfig } from 'remotion'
+import { FONT_FAMILY } from './constants'
 
 const title: React.CSSProperties = {
   fontFamily: FONT_FAMILY,
-  fontWeight: "bold",
+  fontWeight: 'bold',
   fontSize: 100,
-  textAlign: "center",
-  position: "absolute",
+  textAlign: 'center',
+  position: 'absolute',
   bottom: 160,
-  width: "100%",
-};
+  width: '100%',
+}
 
 const word: React.CSSProperties = {
   marginLeft: 10,
   marginRight: 10,
-  display: "inline-block",
-};
+  display: 'inline-block',
+}
 
 export const Title: React.FC<{
-  readonly titleText: string;
-  readonly titleColor: string;
+  readonly titleText: string
+  readonly titleColor: string
 }> = ({ titleText, titleColor }) => {
-  const videoConfig = useVideoConfig();
-  const frame = useCurrentFrame();
+  const videoConfig = useVideoConfig()
+  const frame = useCurrentFrame()
 
-  const words = titleText.split(" ");
+  const words = titleText.split(' ')
 
   return (
     <h1 style={title}>
       {words.map((t, i) => {
-        const delay = i * 5;
+        const delay = i * 5
 
         const scale = spring({
           fps: videoConfig.fps,
@@ -38,7 +38,7 @@ export const Title: React.FC<{
           config: {
             damping: 200,
           },
-        });
+        })
 
         return (
           <span
@@ -51,8 +51,8 @@ export const Title: React.FC<{
           >
             {t}
           </span>
-        );
+        )
       })}
     </h1>
-  );
-};
+  )
+}

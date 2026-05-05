@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "vitest", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "perf": "error"
+  },
+  "rules": {
+    "vitest/require-mock-type-parameters": "off",
+    "vitest/valid-title": "off",
+    "typescript/no-explicit-any": "warn",
+    "typescript/ban-ts-comment": "off",
+    "typescript/no-namespace": "off",
+    "no-bitwise": "off",
+    "no-await-in-loop": "off",
+    "no-shadow": "off",
+    "no-underscore-dangle": "off",
+    "unicorn/no-array-sort": "off",
+    "unicorn/prefer-set-has": "off",
+    "unicorn/no-useless-spread": "off",
+    "unicorn/consistent-function-scoping": "off",
+    "unicorn/prefer-array-flat-map": "off",
+    "unicorn/no-array-reverse": "off",
+    "typescript/no-extraneous-class": "off",
+    "vitest/valid-describe-callback": "off",
+    "vitest/warn-todo": "off",
+    "vitest/expect-expect": "off",
+    "no-extend-native": "off",
+    "oxc/no-map-spread": "warn",
+    "no-unused-expressions": "warn",
+    "no-eval": "warn",
+    "no-unsafe-optional-chaining": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.spec.ts", "**/tests/**/*.ts"],
+      "rules": {
+        "typescript/no-explicit-any": "off",
+        "no-unused-vars": "off"
+      }
+    },
+    {
+      "files": ["**/videos/**/*.tsx", "**/visualisations/**/*.tsx"],
+      "rules": {
+        "no-empty-pattern": "off",
+        "no-unused-vars": "off"
+      }
+    }
+  ],
+  "env": {
+    "browser": false,
+    "node": true,
+    "es2024": true,
+    "vitest/globals": true
+  },
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/.yarn/**",
+    "**/.next/**",
+    "**/wasm_optimisations/**",
+    "**/input/**",
+    "**/dayXX*.ts",
+    "**/templates/**"
+  ]
+}

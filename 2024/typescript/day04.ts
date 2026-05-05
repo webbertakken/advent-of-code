@@ -6,13 +6,21 @@ const getInput = () => Library.getInput('day04').split('\n')
 export const getXmasCount = () => {
   const wordSearch = getInput()
 
-  const search = (x: number, y: number, word: string, direction: { x: number; y: number }, index = 1): boolean => {
+  const search = (
+    x: number,
+    y: number,
+    word: string,
+    direction: { x: number; y: number },
+    index = 1,
+  ): boolean => {
     if (index === word.length) return true
 
     const nextX = x + direction.x
     const nextY = y + direction.y
 
-    return wordSearch[nextY]?.[nextX] === word[index] ? search(nextX, nextY, word, direction, index + 1) : false
+    return wordSearch[nextY]?.[nextX] === word[index]
+      ? search(nextX, nextY, word, direction, index + 1)
+      : false
   }
 
   const searchInEachDirection = (x: number, y: number, word: string) => {
@@ -49,8 +57,18 @@ export const getCrossedMasCount = () => {
     for (let x = 0; x < wordSearch[y].length; x++) {
       if (wordSearch[y][x] !== 'A') continue
       const half = ['SAM', 'MAS']
-      if (!half.includes(`${wordSearch[y - 1]?.[x - 1]}${wordSearch[y][x]}${wordSearch[y + 1]?.[x + 1]}`)) continue
-      if (!half.includes(`${wordSearch[y - 1]?.[x + 1]}${wordSearch[y][x]}${wordSearch[y + 1]?.[x - 1]}`)) continue
+      if (
+        !half.includes(
+          `${wordSearch[y - 1]?.[x - 1]}${wordSearch[y][x]}${wordSearch[y + 1]?.[x + 1]}`,
+        )
+      )
+        continue
+      if (
+        !half.includes(
+          `${wordSearch[y - 1]?.[x + 1]}${wordSearch[y][x]}${wordSearch[y + 1]?.[x - 1]}`,
+        )
+      )
+        continue
       ++count
     }
   }

@@ -23,10 +23,12 @@ function runProgram(a: bigint, b: bigint, c: bigint, instructions: number[]): nu
   const adv = (operand: number) => (register.a = BigInt(register.a) / 2n ** getCombo(operand) / 1n)
   const bxl = (operand: number) => (register.b ^= BigInt(operand))
   const bst = (operand: number) => (register.b = BigInt(getCombo(operand)) % 8n)
-  const bxc = (operand: number) => (register.b ^= register.c)
+  const bxc = (_operand: number) => (register.b ^= register.c)
   const out = (operand: number) => output.push(Number(getCombo(operand) % 8n))
-  const bdv = (operand: number) => (register.b = BigInt(register.a) / 2n ** BigInt(getCombo(operand)) / 1n)
-  const cdv = (operand: number) => (register.c = BigInt(register.a) / 2n ** BigInt(getCombo(operand)) / 1n)
+  const bdv = (operand: number) =>
+    (register.b = BigInt(register.a) / 2n ** BigInt(getCombo(operand)) / 1n)
+  const cdv = (operand: number) =>
+    (register.c = BigInt(register.a) / 2n ** BigInt(getCombo(operand)) / 1n)
 
   const output: number[] = []
   for (let i = 0; i < instructions.length; i += 2) {

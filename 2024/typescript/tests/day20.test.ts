@@ -11,21 +11,13 @@ describe('Day 20', async () => {
       getInput.mockRestore()
     })
 
-    it('works with real input', () => {
-      // expect(part1()).toEqual(0)
-    })
+    // Pending until the real-input solver is implemented.
+    it.todo('works with real input')
   })
 
   describe('part2', () => {
-    it('works with example input', () => {
-      // const getInput = vi.spyOn(Library, "getInput").mockImplementation(Library.getExampleInput)
-      // expect(part2()).toEqual(0)
-      // expect(getInput).toHaveBeenCalledTimes(1)
-      // getInput.mockRestore()
-    })
-
-    it('works with real input', () => {
-      // expect(part2()).toEqual(0)
-    })
+    // Both pending until part2 is implemented.
+    it.todo('works with example input')
+    it.todo('works with real input')
   })
 })

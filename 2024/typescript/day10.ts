@@ -47,7 +47,10 @@ export const getCombinedTrailheadScores = () => {
 
   return getTrailheads(map)
     .toArray()
-    .map((trailhead) => new Set<string>([...findSummits(map, trailhead)].map(({ x, y }) => `${x},${y}`)).size)
+    .map(
+      (trailhead) =>
+        new Set<string>([...findSummits(map, trailhead)].map(({ x, y }) => `${x},${y}`)).size,
+    )
     .sum()
 }
 console.log('Scores of all trailheads combined:', getCombinedTrailheadScores())

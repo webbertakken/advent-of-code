@@ -3,7 +3,9 @@ import Library from './lib'
 const getInput = () => Library.getInput('day01').split('\n\n')
 
 const getTotals = () => {
-  return getInput().map((group) => group.split('\n').reduce((acc, number) => acc + Number(number), 0))
+  return getInput().map((group) =>
+    group.split('\n').reduce((acc, number) => acc + Number(number), 0),
+  )
 }
 
 // Part 1

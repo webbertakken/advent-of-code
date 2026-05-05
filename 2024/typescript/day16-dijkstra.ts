@@ -31,7 +31,8 @@ export const part1 = () => {
       const x = node.x + direction.x
       const y = node.y + direction.y
 
-      if (x < 0 || y < 0 || x >= layout[0].length || y >= layout.length) throw new Error('Out of bounds')
+      if (x < 0 || y < 0 || x >= layout[0].length || y >= layout.length)
+        throw new Error('Out of bounds')
 
       if (layout[y][x] === '#') continue
       let cost = 1
@@ -43,7 +44,9 @@ export const part1 = () => {
         if (direction.y === 1) cost = 1001
         console.log('No prev', direction.x, direction.y, 'cost:', cost)
       } else {
-        const dir1 = directions.findIndex((dir) => dir.x === prev.x - node.x && dir.y === prev.y - node.y)
+        const dir1 = directions.findIndex(
+          (dir) => dir.x === prev.x - node.x && dir.y === prev.y - node.y,
+        )
         const dir2 = directions.indexOf(direction)
 
         // Angles: 0 = 0°, 1 = 90°, 2 = 180°, 3 = 270°

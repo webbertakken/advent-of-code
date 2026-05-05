@@ -23,12 +23,17 @@ export function ScanForInstructions() {
         dangerouslySetInnerHTML={{
           __html: input
             .replaceAll('<', '&lt;')
-            .replaceAll(/mul\(\d+,\d+\)/g, (match) => `<span class="text-green-500">` + match + `</span>`),
+            .replaceAll(
+              /mul\(\d+,\d+\)/g,
+              (match) => `<span class="text-green-500">` + match + `</span>`,
+            ),
         }}
         className="absolute w-2/3 overflow-x-clip text-nowrap z-10 text-blue-300 border-[rgba(12,12,12,.2)] border-y-8 bg-[#282b36] h-20"
         style={{
           left: mayStart ? width - (frame - swipeInDuration) * scrollSpeed : width,
-          width: mayStart ? `calc(66.6% + ${(frame - swipeInDuration) * scrollSpeed - width}px)` : '66.6%',
+          width: mayStart
+            ? `calc(66.6% + ${(frame - swipeInDuration) * scrollSpeed - width}px)`
+            : '66.6%',
         }}
       />
       <div

@@ -17,7 +17,11 @@ const getInput = (): [Position, string[][], Indicator[]] => {
   const robotIndex = layout.indexOf('@')
   const robot = { x: robotIndex % (width + 1), y: Math.floor(robotIndex / width) }
 
-  return [robot, layout.split('\n').map((line) => line.split('')), moves.split('\n').join('').split('') as Indicator[]]
+  return [
+    robot,
+    layout.split('\n').map((line) => line.split('')),
+    moves.split('\n').join('').split('') as Indicator[],
+  ]
 }
 
 const convertToDoubleWidth = (symbol: string): string => {
@@ -44,7 +48,11 @@ function getSecondWarehouse() {
   return { robot, moves, layout }
 }
 
-const findAffected = (layout: string[][], position: Position, direction: Direction): Position[] | null => {
+const findAffected = (
+  layout: string[][],
+  position: Position,
+  direction: Direction,
+): Position[] | null => {
   const nextPosition: Position = { x: position.x + direction.x, y: position.y + direction.y }
   const nextTile: string = layout[nextPosition.y][nextPosition.x]
 
@@ -69,7 +77,9 @@ const moveRobot = (robot: Position, layout: string[][], direction: Direction) =>
       if (affected.length === 0) continue
 
       if (!affectedTree[nextLevelIndex]) affectedTree[nextLevelIndex] = [] as Position[]
-      const unique = affected.filter((pos) => !affectedTree[nextLevelIndex].some((p) => p.x === pos.x && p.y === pos.y))
+      const unique = affected.filter(
+        (pos) => !affectedTree[nextLevelIndex].some((p) => p.x === pos.x && p.y === pos.y),
+      )
       affectedTree[nextLevelIndex].push(...unique)
     }
   }

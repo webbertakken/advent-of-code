@@ -20,7 +20,9 @@ const getInput = (): { stacks: { [key: number]: string[] }; moves: any[] } => {
 export const topOfStacksUsingMover9000 = () => {
   const { stacks, moves } = getInput()
 
-  moves.forEach(({ amount, from, to }) => stacks[to].unshift(...stacks[from].splice(0, amount).reverse()))
+  moves.forEach(({ amount, from, to }) =>
+    stacks[to].unshift(...stacks[from].splice(0, amount).reverse()),
+  )
 
   return Object.values(stacks)
     .map((stack) => stack[0])

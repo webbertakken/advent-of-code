@@ -37,7 +37,7 @@ const getInput = (): Input => {
 }
 
 const getFastestRoute = (matrix: Node[][], start: Node, goal: Node) => {
-  const getCost = (prev: Node | undefined, current: Node, next: Node, step: number) =>
+  const getCost = (prev: Node | undefined, current: Node, next: Node, _step: number) =>
     next.value === '#' ? Infinity : 1
   return aStar(matrix, start, goal, getCost, manhattanHeuristic)
 }

@@ -14,7 +14,10 @@ export const wasmGetTotalCalibrationResult = () => {
   return Number(
     getEquations()
       .map(([expectation, ...parts]) =>
-        get_calibration_value(new BigInt64Array(parts.map(BigInt)), BigInt(expectation), ['+', '*']),
+        get_calibration_value(new BigInt64Array(parts.map(BigInt)), BigInt(expectation), [
+          '+',
+          '*',
+        ]),
       )
       .sum(),
   )
@@ -26,9 +29,16 @@ export const wasmGetRevisedTotalCalibrationResult = () => {
   return Number(
     getEquations()
       .map(([expectation, ...parts]) =>
-        get_calibration_value(new BigInt64Array(parts.map(BigInt)), BigInt(expectation), ['+', '*', '||']),
+        get_calibration_value(new BigInt64Array(parts.map(BigInt)), BigInt(expectation), [
+          '+',
+          '*',
+          '||',
+        ]),
       )
       .reduce((a, b) => a + b, BigInt(0)),
   )
 }
-console.log('Calibration result for operators +, * and || is:', wasmGetRevisedTotalCalibrationResult())
+console.log(
+  'Calibration result for operators +, * and || is:',
+  wasmGetRevisedTotalCalibrationResult(),
+)

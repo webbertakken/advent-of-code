@@ -82,7 +82,8 @@ function* getRegions(): Generator<Region> {
     }
 
     // Use amount of corners to determine the number of sides
-    const isCornerValid = ([a, b, c]: number[]) => sides[a] === sides[b] && (sides[a] === 0 || sides[c] === 0)
+    const isCornerValid = ([a, b, c]: number[]) =>
+      sides[a] === sides[b] && (sides[a] === 0 || sides[c] === 0)
     region.sides += cornerSets.filter(isCornerValid).length
 
     return region
@@ -93,9 +94,11 @@ function* getRegions(): Generator<Region> {
 }
 
 // Part 1
-export const getCombinedPrice = () => [...getRegions()].map(({ area, perimeter }) => area * perimeter).sum()
+export const getCombinedPrice = () =>
+  [...getRegions()].map(({ area, perimeter }) => area * perimeter).sum()
 console.log('Price of combined regions:', getCombinedPrice())
 
 // Part 2
-export const getDiscountedPrice = () => [...getRegions()].map(({ area, sides }) => area * sides).sum()
+export const getDiscountedPrice = () =>
+  [...getRegions()].map(({ area, sides }) => area * sides).sum()
 console.log('Price of combined regions with bulk discount:', getDiscountedPrice())

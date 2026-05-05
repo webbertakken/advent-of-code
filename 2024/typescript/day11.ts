@@ -9,14 +9,21 @@ const blink = (stone: number): number[] => {
   // Stones with even amount of digits split in two
   const asString = `${stone}`
   if (asString.length % 2 === 0) {
-    return [Number(asString.slice(0, asString.length / 2)), Number(asString.slice(asString.length / 2))]
+    return [
+      Number(asString.slice(0, asString.length / 2)),
+      Number(asString.slice(asString.length / 2)),
+    ]
   }
 
   // Other cases: multiply by 2024 (36x performance using bitwise operations)
   return [(stone << 11) - (stone << 4) - (stone << 3)]
 }
 
-function* getNextStones(stones: number[], iteration: number, cache: Record<string, number> = {}): Generator<number> {
+function* getNextStones(
+  stones: number[],
+  iteration: number,
+  cache: Record<string, number> = {},
+): Generator<number> {
   if (iteration === 0) return yield stones.length
 
   for (const stone of stones) {

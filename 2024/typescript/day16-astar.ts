@@ -23,8 +23,12 @@ const getCost = (prev: Node, current: Node, next: Node): number => {
   }
 
   // Turning from directions
-  const dir1 = directions.findIndex((dir) => dir.x === prev.x - current.x && dir.y === prev.y - current.y)
-  const dir2 = directions.findIndex((dir) => dir.x === current.x - next.x && dir.y === current.y - next.y)
+  const dir1 = directions.findIndex(
+    (dir) => dir.x === prev.x - current.x && dir.y === prev.y - current.y,
+  )
+  const dir2 = directions.findIndex(
+    (dir) => dir.x === current.x - next.x && dir.y === current.y - next.y,
+  )
 
   // Angles: 0 = 0°, 1 = 90°, 2 = 180°, 3 = 270°
   const angle = (dir1 - dir2 + 4) % 4

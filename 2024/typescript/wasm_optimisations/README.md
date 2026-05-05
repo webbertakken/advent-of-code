@@ -45,8 +45,7 @@ initSync(readFileSync('./wasm_optimisations/pkg/wasm_optimisations_bg.wasm'))
 basic_calculation(1)
 ```
 
-> _**Note**: you can also import `init` as the default import and call it without parameters, however, that doesn't work in tests and benchmarks across Node.js and Bun._
+> _**Note**: you can also import `init` as the default import and call it without parameters,
+> however, that doesn't work in tests and benchmarks across Node.js and Bun._
 
 That's it! You can now use your Rust lib in TypeScript.
-
-

@@ -25,7 +25,8 @@ const getMonkeys = (isWorrying: boolean) => {
 
   let divisorsMultiplied = 1
   // https://regex101.com/r/mNKjJu/1
-  const matcher = /: (?<items>(?:\d+,? ?)+)\n.*= (?<op>.*)\n.*by (?<divisor>\d+)\n.*y (?<yes>\d+)\n.*y (?<no>\d+)/
+  const matcher =
+    /: (?<items>(?:\d+,? ?)+)\n.*= (?<op>.*)\n.*by (?<divisor>\d+)\n.*y (?<yes>\d+)\n.*y (?<no>\d+)/
   getInput().map((x) => {
     const { items, op, divisor, yes, no } = x.match(matcher)!.groups!
     const startItems = items.split(', ').map(Number)
@@ -34,7 +35,7 @@ const getMonkeys = (isWorrying: boolean) => {
     const calm = (x: number) => (isWorrying ? Math.floor(x / 3) : x % divisorsMultiplied)
     const test = (x: number) => (x % Number(divisor) === 0 ? Number(yes) : Number(no))
     // noinspection JSUnusedLocalSymbols
-    const operation = (old: number) => eval(op)
+    const operation = (_old: number) => eval(op)
     monkeys.push(createMonkey(startItems, operation, calm, test))
   })
 
