@@ -30,7 +30,8 @@ export const getTotalSimilarityScore = () => {
 
   // Count the number of times each number appears in list B
   const rightNumberCounts = new Map<number, number>()
-  for (const rightNumber of right) rightNumberCounts.set(rightNumber, (rightNumberCounts.get(rightNumber) ?? 0) + 1)
+  for (const rightNumber of right)
+    rightNumberCounts.set(rightNumber, (rightNumberCounts.get(rightNumber) ?? 0) + 1)
 
   const getSimilarityScore = (number: number) => (rightNumberCounts.get(number) ?? 0) * number
 

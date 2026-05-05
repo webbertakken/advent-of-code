@@ -56,8 +56,12 @@ const getCost = (current: Node, next: Node): number => {
   }
 
   // Turning from directions
-  const dir1 = directions.findIndex((dir) => dir.x === prev.x - current.x && dir.y === prev.y - current.y)
-  const dir2 = directions.findIndex((dir) => dir.x === current.x - next.x && dir.y === current.y - next.y)
+  const dir1 = directions.findIndex(
+    (dir) => dir.x === prev.x - current.x && dir.y === prev.y - current.y,
+  )
+  const dir2 = directions.findIndex(
+    (dir) => dir.x === current.x - next.x && dir.y === current.y - next.y,
+  )
 
   // Angles: 0 = 0°, 1 = 90°, 2 = 180°, 3 = 270°
   const angle = (dir1 - dir2 + 4) % 4
@@ -118,7 +122,12 @@ console.log('Part 1:', part1())
 // Part 2
 export const part2 = () => {
   const [matrix, start, goal] = getMatrix()
-  const { bestCost: initialBestCost, bestPath: initialBestPath } = depthFirstSearch(matrix, start, goal, true)
+  const { bestCost: initialBestCost, bestPath: initialBestPath } = depthFirstSearch(
+    matrix,
+    start,
+    goal,
+    true,
+  )
 
   const markedTiles = new Set<string>()
   initialBestPath.forEach(({ x, y }) => markedTiles.add(`${x},${y}`))

@@ -22,7 +22,9 @@ const reportInvalidInput = (message: string) => {
 // Validations
 const day = values.day ? values.day.padStart(2, '0') : positionals[2]?.padStart(2, '0') || undefined
 if (!day || day.length !== 2 || Number(day) < 1 || Number(day) > 25) {
-  reportInvalidInput('Invalid day. Must be a number between 1 and 25.\n\nUsage:\n  `bun new --day=XX`\n  `yarn new XX`')
+  reportInvalidInput(
+    'Invalid day. Must be a number between 1 and 25.\n\nUsage:\n  `bun new --day=XX`\n  `yarn new XX`',
+  )
 }
 
 const wasm = values.wasm || positionals[3] === '--wasm' || false
@@ -45,12 +47,18 @@ writeFileSync(`../input/day${day}-example.txt`, inputExampleFile.replace(/XX/g, 
 
 if (wasm) {
   const wasmFile = readFileSync('scripts/templates/dayXX-wasm.ts', 'utf-8')
-  writeFileSync(`./day${day}-wasm.ts`, wasmFile.replace(/XX/g, `${day}`).replace('// @ts-expect-error\n', ''))
+  writeFileSync(
+    `./day${day}-wasm.ts`,
+    wasmFile.replace(/XX/g, `${day}`).replace('// @ts-expect-error\n', ''),
+  )
 
   const wasmTestFile = readFileSync('scripts/templates/tests/dayXX-wasm.test.ts', 'utf-8')
   writeFileSync(`./tests/day${day}-wasm.test.ts`, wasmTestFile.replace(/XX/g, `${day}`))
 
-  const wasmBenchmarkFile = readFileSync('scripts/templates/benchmarks/dayXX-wasm.bench.ts', 'utf-8')
+  const wasmBenchmarkFile = readFileSync(
+    'scripts/templates/benchmarks/dayXX-wasm.bench.ts',
+    'utf-8',
+  )
   writeFileSync(`./benchmarks/day${day}-wasm.bench.ts`, wasmBenchmarkFile.replace(/XX/g, `${day}`))
 }
 

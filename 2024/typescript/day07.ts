@@ -14,14 +14,19 @@ const calculate = (a: number, b: number, operator: Operator): number => {
   throw new Error('Invalid operator')
 }
 
-const getCalibrationValue = (parts: number[], expectation: number, operators: Operator[]): number => {
+const getCalibrationValue = (
+  parts: number[],
+  expectation: number,
+  operators: Operator[],
+): number => {
   const [a, b, ...rest] = parts
   for (const operator of operators) {
     let result = calculate(a, b, operator)
     if (rest.length <= 0) {
       if (result === expectation) return expectation
     } else {
-      if (expectation === getCalibrationValue([result, ...rest], expectation, operators)) return expectation
+      if (expectation === getCalibrationValue([result, ...rest], expectation, operators))
+        return expectation
     }
   }
 

@@ -32,8 +32,10 @@ export function LightUpCrossedMas() {
     for (let x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] !== 'A') continue
       const half = ['SAM', 'MAS']
-      if (!half.includes(`${matrix[y - 1]?.[x - 1]}${matrix[y][x]}${matrix[y + 1]?.[x + 1]}`)) continue
-      if (!half.includes(`${matrix[y - 1]?.[x + 1]}${matrix[y][x]}${matrix[y + 1]?.[x - 1]}`)) continue
+      if (!half.includes(`${matrix[y - 1]?.[x - 1]}${matrix[y][x]}${matrix[y + 1]?.[x + 1]}`))
+        continue
+      if (!half.includes(`${matrix[y - 1]?.[x + 1]}${matrix[y][x]}${matrix[y + 1]?.[x - 1]}`))
+        continue
       matrix[y][x] = (
         <SpecialLetter set={set} isMiddle>
           {matrix[y][x]}

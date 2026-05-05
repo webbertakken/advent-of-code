@@ -1,26 +1,20 @@
-import {
-  AbsoluteFill,
-  interpolate,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
-import { Arc } from "./Arc";
-import { Atom } from "./Atom";
-import { z } from "zod";
-import { zColor } from "@remotion/zod-types";
+import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion'
+import { Arc } from './Arc'
+import { Atom } from './Atom'
+import { z } from 'zod'
+import { zColor } from '@remotion/zod-types'
 
 export const myCompSchema2 = z.object({
   logoColor1: zColor(),
   logoColor2: zColor(),
-});
+})
 
 export const Logo: React.FC<z.infer<typeof myCompSchema2>> = ({
   logoColor1: color1,
   logoColor2: color2,
 }) => {
-  const videoConfig = useVideoConfig();
-  const frame = useCurrentFrame();
+  const videoConfig = useVideoConfig()
+  const frame = useCurrentFrame()
 
   const development = spring({
     config: {
@@ -29,7 +23,7 @@ export const Logo: React.FC<z.infer<typeof myCompSchema2>> = ({
     },
     fps: videoConfig.fps,
     frame,
-  });
+  })
 
   const rotationDevelopment = spring({
     config: {
@@ -38,7 +32,7 @@ export const Logo: React.FC<z.infer<typeof myCompSchema2>> = ({
     },
     fps: videoConfig.fps,
     frame,
-  });
+  })
 
   const scale = spring({
     frame,
@@ -46,13 +40,9 @@ export const Logo: React.FC<z.infer<typeof myCompSchema2>> = ({
       mass: 0.5,
     },
     fps: videoConfig.fps,
-  });
+  })
 
-  const logoRotation = interpolate(
-    frame,
-    [0, videoConfig.durationInFrames],
-    [0, 360],
-  );
+  const logoRotation = interpolate(frame, [0, videoConfig.durationInFrames], [0, 360])
 
   return (
     <AbsoluteFill
@@ -83,5 +73,5 @@ export const Logo: React.FC<z.infer<typeof myCompSchema2>> = ({
       />
       <Atom scale={rotationDevelopment} color1={color1} color2={color2} />
     </AbsoluteFill>
-  );
-};
+  )
+}

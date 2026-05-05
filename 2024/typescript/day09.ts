@@ -5,7 +5,9 @@ const EMPTY = -1 as const
 const getDisk = (): string => Library.getInput('day09')
 
 const generateChecksum = (disk: number[]) => {
-  return disk.map((n) => (n === EMPTY ? 0 : n)).reduce((checksum, bit, index) => checksum + bit * index, 0)
+  return disk
+    .map((n) => (n === EMPTY ? 0 : n))
+    .reduce((checksum, bit, index) => checksum + bit * index, 0)
 }
 
 function* defragmentPerBit(disk: string): Generator<number> {
@@ -34,7 +36,8 @@ function* defragmentPerBit(disk: string): Generator<number> {
 
   while (pointer < disk.length) {
     const numberOfBits = Number(disk[pointer])
-    const isFinished = () => pointer > endPointer || (pointer === endPointer && bit + endBit > numberOfBits)
+    const isFinished = () =>
+      pointer > endPointer || (pointer === endPointer && bit + endBit > numberOfBits)
 
     for (let currentBit = 1; currentBit < numberOfBits + 1; currentBit++) {
       if (pointer % 2 === 0) {
@@ -107,9 +110,11 @@ function* defragmentPerFile(disk: string) {
 }
 
 // Part 1
-export const getChecksumAfterDefragmentingPerBit = () => generateChecksum([...defragmentPerBit(getDisk())])
+export const getChecksumAfterDefragmentingPerBit = () =>
+  generateChecksum([...defragmentPerBit(getDisk())])
 console.log('Checksum after defragmenting per bit:', getChecksumAfterDefragmentingPerBit())
 
 // Part 2
-export const getChecksumAfterDefragmentingPerFile = () => generateChecksum([...defragmentPerFile(getDisk())])
+export const getChecksumAfterDefragmentingPerFile = () =>
+  generateChecksum([...defragmentPerFile(getDisk())])
 console.log('Checksum after defragmenting per file:', getChecksumAfterDefragmentingPerFile())

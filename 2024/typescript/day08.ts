@@ -20,7 +20,9 @@ function* nodesAndDistancesIterator() {
   for (let y = 0; y < matrix.length; y++) {
     for (let x = 0; x < matrix[y].length; x++) {
       const symbol = matrix[y][x]
-      if (symbol !== '.') antennaLocations.get(symbol)?.push(`${x},${y}`) || antennaLocations.set(symbol, [`${x},${y}`])
+      if (symbol !== '.')
+        antennaLocations.get(symbol)?.push(`${x},${y}`) ||
+          antennaLocations.set(symbol, [`${x},${y}`])
     }
   }
 

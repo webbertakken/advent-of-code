@@ -25,7 +25,8 @@ const getMonkeys = (isWorrying: boolean) => {
 
   let divisorsMultiplied = 1
   // https://regex101.com/r/mNKjJu/1
-  const matcher = /: (?<items>(?:\d+,? ?)+)\n.*= (?<op>.*)\n.*by (?<divisor>\d+)\n.*y (?<yes>\d+)\n.*y (?<no>\d+)/
+  const matcher =
+    /: (?<items>(?:\d+,? ?)+)\n.*= (?<op>.*)\n.*by (?<divisor>\d+)\n.*y (?<yes>\d+)\n.*y (?<no>\d+)/
   getInput().map((x) => {
     const { items, op, divisor, yes, no } = x.match(matcher)!.groups!
     const startItems = items.split(', ').map(Number)
@@ -33,7 +34,12 @@ const getMonkeys = (isWorrying: boolean) => {
     divisorsMultiplied *= Number(divisor)
     const calm = (x: number) => (isWorrying ? Math.floor(x / 3) : x % divisorsMultiplied)
     const test = (x: number) => (x % Number(divisor) === 0 ? Number(yes) : Number(no))
+    // The parameter name `old` is referenced by the eval'd `op` string at
+    // runtime (e.g. `op === "old * 19"`). Renaming it (e.g. to `_old`)
+    // breaks the eval at runtime even though TS / oxlint think the
+    // parameter is unused.
     // noinspection JSUnusedLocalSymbols
+    // eslint-disable-next-line no-unused-vars -- read by eval(op) at runtime
     const operation = (old: number) => eval(op)
     monkeys.push(createMonkey(startItems, operation, calm, test))
   })

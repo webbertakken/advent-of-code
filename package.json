@@ -1,0 +1,48 @@
+{
+  "name": "advent-of-code",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Advent of Code solutions across multiple years and languages",
+  "workspaces": [
+    "2022/typescript",
+    "2023/typescript",
+    "2024/typescript",
+    "2024/typescript/visualisations",
+    "2024/typescript/videos"
+  ],
+  "scripts": {
+    "build:wasm": "yarn wasm-pack build --target web 2024/typescript/wasm_optimisations",
+    "test": "node scripts/ensure-husky.mjs && yarn workspaces foreach -A --include 'advent-of-code-*-typescript' run test --run",
+    "test:2022": "yarn workspace advent-of-code-2022-typescript test --run",
+    "test:2023": "yarn workspace advent-of-code-2023-typescript test --run",
+    "test:2024": "yarn workspace advent-of-code-2024-typescript test --run",
+    "lint": "yarn oxlint --report-unused-disable-directives",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check",
+    "typecheck": "yarn workspaces foreach -A --include 'advent-of-code-*-typescript' run typecheck",
+    "setup:hooks": "node scripts/ensure-husky.mjs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.@(ts|tsx|mts|js|jsx|mjs|cjs)": [
+      "oxlint --fix --quiet",
+      "oxfmt --write"
+    ],
+    "*.@(json|jsonc|json5|md|mdx|yaml|yml|css|scss|sass|html|toml)": "oxfmt --write",
+    ".github/workflows/*.@(yml|yaml)": "actionlint"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260505.1",
+    "eslint": "^10.3.0",
+    "eslint-plugin-unicorn": "^64.0.0",
+    "husky": "9",
+    "lint-staged": "^16.4.0",
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.63.0",
+    "typescript": "^5.6.3",
+    "wasm-pack": "^0.14.0"
+  },
+  "packageManager": "yarn@4.14.1"
+}

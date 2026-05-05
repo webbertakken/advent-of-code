@@ -14,8 +14,14 @@ export function BreakDownInstruction() {
 
   return (
     <>
-      <div className="absolute w-full pt-96 px-16 text-6xl text-green-500 font-mono" style={{ opacity }}>
-        <div className="w-full flex flex-row pl-40" style={{ gap: frame % 60, opacity: frame % 120 < 60 ? 1 : 0 }}>
+      <div
+        className="absolute w-full pt-96 px-16 text-6xl text-green-500 font-mono"
+        style={{ opacity }}
+      >
+        <div
+          className="w-full flex flex-row pl-40"
+          style={{ gap: frame % 60, opacity: frame % 120 < 60 ? 1 : 0 }}
+        >
           <div>mul(</div>
           <div>{left}</div>
           <div>,</div>
@@ -24,10 +30,17 @@ export function BreakDownInstruction() {
         </div>
       </div>
 
-      <div className="absolute w-full pt-96 px-16 text-6xl text-green-500 font-mono" style={{ opacity }}>
+      <div
+        className="absolute w-full pt-96 px-16 text-6xl text-green-500 font-mono"
+        style={{ opacity }}
+      >
         <div
           className="w-full flex flex-row pl-[278px]"
-          style={{ gap: 16 + 59, opacity: frame % 120 >= 60 ? 1 : 0, marginTop: ((frame % 120) - 60) * 2 }}
+          style={{
+            gap: 16 + 59,
+            opacity: frame % 120 >= 60 ? 1 : 0,
+            marginTop: ((frame % 120) - 60) * 2,
+          }}
         >
           <div></div>
           <div>{left}</div>

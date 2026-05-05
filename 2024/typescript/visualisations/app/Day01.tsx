@@ -2,7 +2,14 @@
 
 import data from '../../../input/day01.txt'
 
-import { VictoryBar, VictoryBoxPlot, VictoryChart, VictoryScatter, VictoryTheme, VictoryTooltip } from 'victory'
+import {
+  VictoryBar,
+  VictoryBoxPlot,
+  VictoryChart,
+  VictoryScatter,
+  VictoryTheme,
+  VictoryTooltip,
+} from 'victory'
 
 export const getLists = (data: string) => {
   const lists: { [key: string]: number[] } = { left: [], right: [] }
@@ -91,8 +98,8 @@ export function Day01() {
       </VictoryChart>
       <h2 className="text-2xl">Distribution</h2>
       <p>
-        Not a very useful chart, but it shows the distribution per 25 numbers. Lightgreen is the left list, orange is
-        the right list.
+        Not a very useful chart, but it shows the distribution per 25 numbers. Lightgreen is the
+        left list, orange is the right list.
       </p>
       <VictoryChart domainPadding={10} theme={VictoryTheme.clean} width={500} height={250}>
         <VictoryScatter
@@ -100,7 +107,11 @@ export function Day01() {
           style={{ data: { fill: 'lightgreen' } }}
           maxBubbleSize={2.5}
           minBubbleSize={0.5}
-          data={leftCountsData.map((data, index) => ({ x: Math.round(index / 25), y: data.x, count: data.y }))}
+          data={leftCountsData.map((data, index) => ({
+            x: Math.round(index / 25),
+            y: data.x,
+            count: data.y,
+          }))}
         />
         <VictoryScatter
           bubbleProperty="y"
@@ -111,7 +122,8 @@ export function Day01() {
         />
       </VictoryChart>
       <h2 className="text-2xl">Which number is used the most?</h2>
-      We can see that left (lightgreen) uses each number exactly once. Right (orange) uses some numbers multiple times.
+      We can see that left (lightgreen) uses each number exactly once. Right (orange) uses some
+      numbers multiple times.
       <VictoryChart theme={VictoryTheme.clean} width={500} domainPadding={{ x: 50 }}>
         <VictoryBar data={leftCountsData} style={{ data: { fill: 'rgba(144, 238, 144, 0.5)' } }} />
         <VictoryBar data={rightCountsData} style={{ data: { fill: 'rgba(255, 165, 0, 0.5)' } }} />

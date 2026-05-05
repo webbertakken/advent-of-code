@@ -1,0 +1,18 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "proseWrap": "always",
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/.yarn/**",
+    "**/.next/**",
+    "**/wasm_optimisations/pkg/**",
+    "**/input/**",
+    "**/bun.lockb"
+  ]
+}

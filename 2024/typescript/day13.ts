@@ -6,7 +6,8 @@ const A_COST = 3
 const B_COST = 1
 
 const getInput = (): Machine[] => {
-  const template = /.*?(?<aX>\d+).*?(?<aY>\d+)\n.*?(?<bX>\d+).*?(?<bY>\d+)\n.*?(?<prizeX>\d+).*?(?<prizeY>\d+)/
+  const template =
+    /.*?(?<aX>\d+).*?(?<aY>\d+)\n.*?(?<bX>\d+).*?(?<bY>\d+)\n.*?(?<prizeX>\d+).*?(?<prizeY>\d+)/
 
   return Library.getInput('day13')
     .split('\n\n')
@@ -38,7 +39,8 @@ export function getMinimumCostToWinThePrize(machine: Machine): number {
     const isValidA = aStepsX === aStepsY && Number.isInteger(aStepsX)
     const isValidB = bStepsX === bStepsY && Number.isInteger(bStepsX)
 
-    if (isValidA && isValidB) return aStepsX * A_COST > bStepsX * B_COST ? bStepsX * B_COST : aStepsX * A_COST
+    if (isValidA && isValidB)
+      return aStepsX * A_COST > bStepsX * B_COST ? bStepsX * B_COST : aStepsX * A_COST
     if (isValidA) return aStepsX * A_COST
     if (isValidB) return bStepsX * B_COST
 
@@ -62,8 +64,15 @@ export const getMinimumTokenCostAfterAddingTenTrillion = () => {
   const TEN_TRILLION = 10 ** 13
 
   return getInput()
-    .map((machine) => ({ ...machine, prizeX: machine.prizeX + TEN_TRILLION, prizeY: machine.prizeY + TEN_TRILLION }))
+    .map((machine) => ({
+      ...machine,
+      prizeX: machine.prizeX + TEN_TRILLION,
+      prizeY: machine.prizeY + TEN_TRILLION,
+    }))
     .map(getMinimumCostToWinThePrize)
     .sum()
 }
-console.log('Minimum cost after moving prize by 10 trillion x and y:', getMinimumTokenCostAfterAddingTenTrillion())
+console.log(
+  'Minimum cost after moving prize by 10 trillion x and y:',
+  getMinimumTokenCostAfterAddingTenTrillion(),
+)
