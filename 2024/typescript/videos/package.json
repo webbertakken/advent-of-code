@@ -6,16 +6,16 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@remotion/cli": "4.0.234",
-    "@remotion/tailwind": "4.0.234",
-    "@remotion/zod-types": "4.0.234",
+    "@remotion/cli": "4.0.410",
+    "@remotion/tailwind": "4.0.410",
+    "@remotion/zod-types": "4.0.410",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "remotion": "4.0.234",
+    "remotion": "4.0.410",
     "zod": "3.22.3"
   },
   "devDependencies": {
-    "@remotion/eslint-config": "4.0.234",
+    "@remotion/eslint-config": "4.0.410",
     "@types/react": "18.3.1",
     "@types/web": "0.0.166",
     "eslint": "8.56.0",
